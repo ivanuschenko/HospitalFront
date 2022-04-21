@@ -1,0 +1,52 @@
+.signIn-container{
+  width: 80vw;
+  margin: 0 auto;
+  align-self: center;
+  height: 90vh;
+  .validation-value{
+    margin: 0;
+    color: red;
+  }
+  
+}
+.signIn-form{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 25rem;
+  height: 28,3125rem;
+  padding: 2rem;  
+
+  input{    
+    height: 2.5rem;       
+  }
+  label{
+    margin-top: 10%;
+  }
+  
+
+  .submit-signIn{
+    margin-top: 10%;
+    width: 70%;
+    align-self: end;
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: white;
+    border: solid 0.5px gray;
+  }
+
+  a{
+    width: 60%;
+    font-size: 30px;
+    align-self: end;
+    text-decoration: none;
+  }
+  .signIn-form-form{
+    display: flex;
+    flex-direction: column;
+    label{
+      align-self: flex-start;
+    }
+  }
+}
