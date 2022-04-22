@@ -1,13 +1,13 @@
-import React from "react";
 import {Routes, Route} from 'react-router-dom';
-import SignUp from "./component/signUp/signUp";
+import SignUp from './component/signUp/signUp';
+import SimpleSnackbar from './component/snack/snack';
 
-function App() {
+const App = () => {
   return (
       <Routes>        
-        <Route path="/signUp" element={<SignUp/>}/>
-        <Route path="/*" element ={<SignUp/>}/>               
-      </Routes> 
+        <Route path='/signUp' element={<SignUp/>}/>
+        <Route path='/*' element ={<SignUp/>}/>               
+      </Routes>      
   );
 }
 export default App;

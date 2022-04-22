@@ -1,78 +1,90 @@
-import React, { useState, useContext } from 'react';
+import Header from '../header/header';
+import Body from '../body/body';
+import { useState, useContext } from 'react';
+import SimpleSnackbar from '../snack/snack';
 import { Link, useNavigate } from 'react-router-dom';
 import { Context } from '../../index';
 import './signUp.scss';
-import Header from '../header/header';
-import Body from '../body/body';
 import BodyImg from '../../img/hospital.svg';
 
-const SignUp = () => {
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+const SignUp = () => {  
+  const [newUser, setNewUser] = useState({
+    name: '',
+    password : '',
+    confirmPassword: '',
+  })
+  const [snackText, setSnackText] = useState('');
+  const [open, setOpen] = useState(false); 
   const navigate = useNavigate();
-  const {store} = useContext(Context);
+  const {store} = useContext(Context);  
    
-  const createNewPatient = async (name, pass, confirmPass, e) => {    
-    if (pass === confirmPass) {
-      e.preventDefault();
-      store.registration(name, pass)
-      // navigate('/Appoinment');
-      alert('успешно! успешна');     
+  const createNewPatient = async (e) => { 
+    setOpen(true);
+    e.preventDefault();    
+    if (newUser.password === newUser.confirmPassword) {      
+      store.registration(newUser.name, newUser.password);
+      setSnackText('success!');          
     }
     else {
-      alert('Incorect password!!!!');
-    }  
-}
-  return(
-    <form className='signUp-container' onSubmit={(e)=> createNewPatient(name, password, confirmPassword, e)}>
+      setSnackText('Incorect password!!!!');
+    } 
+  }  
+  
+  const handleChange = (key, value) => {
+    setNewUser({...newUser, [key]:value})
+  }
+
+  return (    
+    <form className='signUp' onSubmit={(e)=> createNewPatient(e)}>
       <Header>
-        <h1>Зарегистрироваться в системе</h1>        
+        <div className='header-title'>
+          <h1>Зарегистрироваться в системе</h1>   
+        </div>               
       </Header>
       <Body>
-        <img src={BodyImg} alt="BodyImg"/>
-        <form className='signUp-form'>
+        <img src={BodyImg} alt='BodyImg'/>
+        <div className='signUp__form'>
             <h1>Зарегистрироваться</h1>
-            <div className='signUp-form-form'>
-              <label htmlFor="signUp-input-name">Логин:</label>
+            <div className='signUp__block'>
+              <label htmlFor='signUp__input'>Логин:</label>
               <input 
-                type="text"
-                className='signUp-input-name'
+                type='text'
+                className='signUp__input'
                 placeholder='Введите логин'                
-                onChange={(e) => setName(e.target.value)} 
+                onChange={(e) => handleChange('name',e.target.value)}
               />
             </div>
-            <div className='signUp-form-form'>
-              <label htmlFor="signUp-input-password">Пароль:</label>
+            <div className='signUp__block'>
+              <label htmlFor='signUp__input'>Пароль:</label>
               <input 
-                type="password"
-                className='signUp-input-password'
+                type='password'
+                className='signUp__input'
                 placeholder='введите пароль'                
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => handleChange('password',e.target.value)}
               />
             </div>
-            <div className='signUp-form-form'>
-              <label htmlFor="signUp-input-repeat-password">Повторите пароль:</label>
+            <div className='signUp__block'>
+              <label htmlFor='signUp__input'>Повторите пароль:</label>
               <input 
-                type="password"
-                className='signUp-input-repeat-password'
+                type='password'
+                className='signUp__input'
                 placeholder='Повторите пароль'                
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                onChange={(e) => handleChange('confirmPassword',e.target.value)}
               />              
-            </div>  
-            <Link to='/Appoinment'>
+            </div>                    
               <input
-                className='signUp-btn'
-                value='Зарегистрироваться'
-                type = 'submit'
-              />              
+                  className='signUp__btn'                  
+                  value='Зарегистрироваться'
+                  type = 'submit'
+                />                       
+            <Link className='signUp__a' to='/signIn'>
+              <h3>Войти</h3>
             </Link>
-            <Link to='/signIn'><h3>Войти</h3></Link>
-        </form>
-      </Body>      
+        </div>
+      </Body> 
+      <SimpleSnackbar snackText = {snackText} open = {open} setOpen ={setOpen}/>         
     </form>
   )
-
 }
 
 export default SignUp;
