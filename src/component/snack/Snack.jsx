@@ -1,4 +1,3 @@
-import React from 'react';
 import { Snackbar } from '@mui/material';
 
  const SimpleSnackbar = ({snackText, open, setOpen}) => {   

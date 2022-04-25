@@ -1,11 +1,11 @@
-import './body.scss';
+import './Body.scss';
 
 const Body = ({children}) => {
-  return(
+  return (
     <div className='body-form'>
       {children}
     </div>
-  ) 
-}
+  ); 
+};
 
-export default Body
+export default Body;
