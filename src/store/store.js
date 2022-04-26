@@ -9,19 +9,19 @@ export default class Store {
   isLoading = false;
 
   constructor() {
-      makeAutoObservable(this);
+    makeAutoObservable(this);
   }
 
   setAuth(bool) {
-      this.isAuth = bool;
+    this.isAuth = bool;
   }
 
   setUser(user) {
-      this.user = user;
+    this.user = user;
   }
 
   setLoading(bool) {
-      this.isLoading = bool;
+    this.isLoading = bool;
   }
 
   registration = async(name, password) => {

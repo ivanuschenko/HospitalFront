@@ -22,7 +22,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const {store} = useContext(Context);  
    
-  const createNewPatient = async (e) => {
+  const createNewPatient = (e) => {
     e.preventDefault();  
     const {
       validName,
