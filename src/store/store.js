@@ -24,29 +24,29 @@ export default class Store {
       this.isLoading = bool;
   }
 
-  async registration (name, password)  {
-      try {
-          const response = await AuthService.registration(name, password);          
-          localStorage.setItem('token', response.data.accessToken);
-          this.setAuth(true);
-          this.setUser(response.data.user);          
-          return ('success')
-      } catch (e) {
-          return(e.response?.data?.message);
-      }
+  registration = async(name, password) => {
+    try {
+      const response = await AuthService.registration(name, password);          
+      localStorage.setItem('token', response.data.accessToken);
+      this.setAuth(true);
+      this.setUser(response.data.user);          
+      return ('success')
+    } catch (e) {
+        return(e.response?.data?.message);
+    }
   }    
 
   checkAuth = () => {
-      this.setLoading(true);
-      try {
-          const response = axios.get(`${url}/refresh`, {withCredentials: true});          
-          localStorage.setItem('token', response.data.accessToken);
-          this.setAuth(true);
-          this.setUser(response.data.user);
-      } catch (e) {
-          alert(e.response?.data?.message);
-      } finally {
-          this.setLoading(false);
-      }
-    }  
+    this.setLoading(true);
+    try {
+      const response = axios.get(`${url}/refresh`, {withCredentials: true});          
+      localStorage.setItem('token', response.data.accessToken);
+      this.setAuth(true);
+      this.setUser(response.data.user);
+    } catch (e) {
+        alert(e.response?.data?.message);
+    } finally {
+        this.setLoading(false);
+    }
+  }  
 }

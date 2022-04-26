@@ -14,8 +14,8 @@ const SignUp = () => {
     confirmPassword: '',
   });
   const [checkValid, setCheckValid] = useState ({
-    validName: /[a-zA-Z]{4,12}/,
-    validPassword : /[0-9]{4,8}/                       
+    validName: /^[0-9A-Za-z]{6,}$/,
+    validPassword : /^.*(?=.{6,})(?=.*\d)(?=.*[a-z]).*$/                       
   });  
   const [snackText, setSnackText] = useState('');
   const [open, setOpen] = useState(false); 
@@ -37,10 +37,10 @@ const SignUp = () => {
     if (name && password && confirmPassword) {
       setOpen(true)
       if(!validName.test(name)){      
-        setSnackText('login should consist 4 to 12 letters')
+        setSnackText('login should consist min 6 letters')
       } else {
         if (!validPassword.test(password)){
-          setSnackText("password should consist 4 to 12 numbers")
+          setSnackText("password should consist min 6 numbers and 1 letter")
         } else {
           if (password === confirmPassword ) {
             const res = store.registration(name, password);
