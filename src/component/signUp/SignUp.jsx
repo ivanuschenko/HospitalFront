@@ -23,7 +23,8 @@ const SignUp = () => {
   const {store} = useContext(Context);  
    
   const createNewPatient = (e) => {
-    e.preventDefault();  
+    e.preventDefault();
+    setOpen(true)  
     const {
       validName,
       validPassword
@@ -33,9 +34,7 @@ const SignUp = () => {
       password,
       confirmPassword
     } = newUser;
-
-    if (name && password && confirmPassword) {
-      setOpen(true)
+    if (name && password && confirmPassword) {      
       if(!validName.test(name)){      
         setSnackText('login should consist min 6 letters')
       } else {
