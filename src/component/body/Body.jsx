@@ -1,4 +1,4 @@
-import './Body.scss';
+import './body.scss';
 
 const Body = ({children}) => {
   return (

@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react';
-import SimpleSnackbar from '../snack/Snack';
 import { Link, useNavigate } from 'react-router-dom';
 import { Context } from '../../index';
 import Header from '../header/Header';
 import Body from '../body/Body';
-import './SignUp.scss';
+import SimpleSnackbar from '../snack/Snack';
+import './signUp.scss';
 import BodyImg from '../../img/hospital.svg';
 
 const SignUp = () => {  
@@ -12,22 +12,48 @@ const SignUp = () => {
     name: '',
     password : '',
     confirmPassword: '',
-  })
+  });
+  const [checkValid, setCheckValid] = useState ({
+    validName: /[a-zA-Z]{4,12}/,
+    validPassword : /[0-9]{4,8}/                       
+  });  
   const [snackText, setSnackText] = useState('');
   const [open, setOpen] = useState(false); 
   const navigate = useNavigate();
   const {store} = useContext(Context);  
    
-  const createNewPatient = async (e) => { 
-    setOpen(true);
-    e.preventDefault();    
-    if (newUser.password === newUser.confirmPassword ) {
-      const res = store.registration(newUser.name, newUser.password);
-      res.then(value => (setSnackText(value)))      
+  const createNewPatient = async (e) => {
+    e.preventDefault();  
+    const {
+      validName,
+      validPassword
+    } = checkValid;   
+    const {
+      name,
+      password,
+      confirmPassword
+    } = newUser;
+
+    if (name && password && confirmPassword) {
+      setOpen(true)
+      if(!validName.test(name)){      
+        setSnackText('login should consist 4 to 12 letters')
+      } else {
+        if (!validPassword.test(password)){
+          setSnackText("password should consist 4 to 12 numbers")
+        } else {
+          if (password === confirmPassword ) {
+            const res = store.registration(name, password);
+            res.then(value => (setSnackText(value)))      
+          }
+          else {
+            setSnackText(`password and confirm password are different!`);
+          } 
+        }         
+      }     
+    } else {
+      setSnackText('please input all values')
     }
-    else {
-      setSnackText(`password and confirm password are different!`);
-    } 
   }  
   
   const handleChange = (key, value) => {
@@ -42,7 +68,7 @@ const SignUp = () => {
         </div>               
       </Header>
       <Body>
-        <img src={BodyImg} alt='image'/>
+        <img src={BodyImg} alt='hospitalLogo'/>
         <div className='signUp__form'>
           <h1>Зарегистрироваться</h1>
           <div className='signUp__block'>
@@ -50,8 +76,7 @@ const SignUp = () => {
             <input 
               type='text'
               className='signUp__input'
-              placeholder='Введите логин'
-              pattern="[a-z]{4,8}" title="4 to 8 lowercase letters"              
+              placeholder='Введите логин'                         
               onChange={(e) => handleChange('name', e.target.value)}
             />
           </div>
@@ -61,8 +86,6 @@ const SignUp = () => {
               type='password'
               className='signUp__input'
               placeholder='введите пароль'
-              pattern='[0-9]{4,12}'
-              title="password should consist 4 to 12 numbers"                  
               onChange={(e) => handleChange('password', e.target.value)}
             />
           </div>
@@ -71,23 +94,21 @@ const SignUp = () => {
             <input 
               type='password'
               className='signUp__input'
-              placeholder='Повторите пароль'
-              pattern='[0-9]{4,12}'
-              title="password should consist 4 to 12 numbers"                           
+              placeholder='Повторите пароль' 
               onChange={(e) => handleChange('confirmPassword', e.target.value)}
             />              
           </div>                    
-            <input
-              className='signUp__btn'                  
-              value='Зарегистрироваться'
-              type = 'submit'
-            />                       
+          <input
+            className='signUp__btn'                  
+            value='Зарегистрироваться'
+            type='submit'
+          />                       
           <Link className='signUp__a' to='/signIn'>
             <h3>Войти</h3>
           </Link>
         </div>
       </Body> 
-      <SimpleSnackbar snackText = {snackText} open = {open} setOpen ={setOpen}/>         
+      <SimpleSnackbar snackText={snackText} open={open} setOpen={setOpen}/>         
     </form>
   )
 }

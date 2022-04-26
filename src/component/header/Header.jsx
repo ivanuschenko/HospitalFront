@@ -1,4 +1,4 @@
-import './Header.scss';
+import './header.scss';
 import Logo from '../../img/logo.svg';
 
 const Header = ({children}) => {

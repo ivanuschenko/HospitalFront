@@ -24,7 +24,7 @@ export default class Store {
       this.isLoading = bool;
   }
 
-  async registration(name, password) {
+  async registration (name, password)  {
       try {
           const response = await AuthService.registration(name, password);          
           localStorage.setItem('token', response.data.accessToken);
@@ -36,11 +36,10 @@ export default class Store {
       }
   }    
 
-  checkAuth() {
+  checkAuth = () => {
       this.setLoading(true);
       try {
-          const response = axios.get(`${url}/refresh`, {withCredentials: true})
-          console.log(response);
+          const response = axios.get(`${url}/refresh`, {withCredentials: true});          
           localStorage.setItem('token', response.data.accessToken);
           this.setAuth(true);
           this.setUser(response.data.user);
