@@ -30,15 +30,15 @@ const SignUp = () => {
 
     const resultValidationLogin = checkValidationLogin(name);
     const resultValidationPass = checkValidationPassword(password)
-    if (resultValidationLogin !== true) {
-      setSnackText(resultValidationLogin) 
-    } else if (resultValidationPass !== true) {
-      setSnackText(resultValidationPass)
+    if (!resultValidationLogin) {
+      setSnackText('login should consist min 6 letters');
+    } else if (!resultValidationPass) {
+      setSnackText('password should consist min 6 numbers and 1 letter');
     } else if(password !== confirmPassword) {
       setSnackText('Password and confirm pasword are different!')
     } else {
       const res = store.registration(name, password);
-      res.then(value => (setSnackText(value)))
+      res.then(value => setSnackText(value));
     }    
   }
    

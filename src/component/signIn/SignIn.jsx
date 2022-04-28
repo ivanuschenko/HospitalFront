@@ -4,10 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import Header from '../header/Header';
 import Body from '../body/Body';
 import BodyImg from '../../img/hospital.svg'
-import { url } from '../../constants';
 import { Context } from '../../index';
 import SimpleSnackbar from '../snack/Snack';
-import { checkValidationLogin , checkValidationPassword } from '../../helper/helperValidate';
 
 const SignIn = () => {
   const [newUser, setNewUser] = useState({
@@ -25,18 +23,10 @@ const SignIn = () => {
       name,
       password      
     } = newUser;
-
-    e.preventDefault();
-    const resultValidationLogin = checkValidationLogin(name);
-    const resultValidationPass = checkValidationPassword(password)
-    if (resultValidationLogin !== true) {
-      setSnackText(resultValidationLogin) 
-    } else if (resultValidationPass !== true) {
-      setSnackText(resultValidationPass)
-    } else { 
+    
+    e.preventDefault();   
       const res = store.signIn(name,password)
-      res.then(value => (setSnackText(value)))
-    }    
+      res.then(value => setSnackText(value))        
   }
 
   const handleChange = (key, value) => {
