@@ -3,7 +3,7 @@ import Logo from '../../img/logo.svg';
 
 const Header = ({children}) => {
   return (
-    <div className='header-form'>
+    <div className='header-block'>
       <img src={Logo} alt='logo' />
         {children}
     </div>

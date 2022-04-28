@@ -11,7 +11,7 @@ api.interceptors.request.use((config)=> {
   return config;
 });
 
-const refresh =  () => {
+const refresh = () => {
   try {
     const response =  axios.get(`${url}/api/refresh`, {
       withCredentials: true,
@@ -23,7 +23,7 @@ const refresh =  () => {
 };
 
 api.interceptors.response.use((config) => {
-    return config;
+  return config;
   }, async (error) => {
     const originalRequest = error.config;   
     if (error.response.status === 401 && error.config && !originalRequest._isRetry) {
