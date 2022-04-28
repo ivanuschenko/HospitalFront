@@ -28,10 +28,10 @@ const SignUp = () => {
       confirmPassword
     } = newUser;
 
-    const resultValidationName = checkValidationName(name);
+    const resultValidationLogin = checkValidationLogin(name);
     const resultValidationPass = checkValidationPassword(password)
-    if (resultValidationName !== true) {
-      setSnackText(resultValidationName) 
+    if (resultValidationLogin !== true) {
+      setSnackText(resultValidationLogin) 
     } else if (resultValidationPass !== true) {
       setSnackText(resultValidationPass)
     } else if(password !== confirmPassword) {

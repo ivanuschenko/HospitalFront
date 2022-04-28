@@ -1,11 +1,11 @@
 export const validateLogin = /^[0-9A-Za-z]{6,}$/;
 export const validatePassword = /^.*(?=.{6,})(?=.*\d)(?=.*[a-z]).*$/
 
-export const checkValidationName = (name) => {  
-  if (!name) {    
-    return ('please input name');
+export const checkValidationLogin = (login) => {  
+  if (!login) {    
+    return ('please input login');
   } 
-  else if (!validateLogin.test(name)) {
+  else if (!validateLogin.test(login)) {
     return ('login should consist min 6 letters');
   }  
   else {
