@@ -6,7 +6,7 @@ import Body from '../body/Body';
 import SimpleSnackbar from '../snack/Snack';
 import './signUp.scss';
 import BodyImg from '../../img/hospital.svg';
-import { checkValidationName, checkValidationPassword } from '../../helper/helperValidate';
+import { checkValidationLogin , checkValidationPassword } from '../../helper/helperValidate';
 
 const SignUp = () => {  
   const [newUser, setNewUser] = useState({
@@ -85,11 +85,7 @@ const SignUp = () => {
             />              
           </div>
           <div className='signup-block__btn'>
-            <input
-              className='signup-btn'                  
-              value='Зарегистрироваться'
-              type='submit'
-            /> 
+            <button className='signin-btn'>Зарегистрироваться</button> 
           </div>                                
           <Link className='signup-block__link' to='/signIn'>
             <h3>Войти</h3>

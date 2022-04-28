@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { makeAutoObservable } from 'mobx';
-import AuthService from '../services/AuthServices';
+import authService from '../services/AuthServices';
 import { url } from "../constants";
 
 export default class Store {
@@ -26,7 +26,7 @@ export default class Store {
 
   registration = async (name, password) => {
     try {
-      const response = await AuthService.registration(name, password);          
+      const response = await authService.registration(name, password);          
       localStorage.setItem('token', response.data.accessToken);
       this.setAuth(true);
       this.setUser(response.data.user);          
@@ -34,7 +34,19 @@ export default class Store {
     } catch (e) {
       return(e.response?.data?.message);
     }
-  }    
+  }
+
+  signIn = async (name, password) => {
+    try {
+      const response = await authService.signIn(name, password);      
+      localStorage.setItem('token', response.data.accessToken);            
+      this.setAuth(true);
+      this.setUser(response.data.user);
+      return('success');       
+    } catch (e) {
+      return(e.response?.data?.message);
+    }
+  }   
 
   checkAuth = async () => {
     this.setLoading(true);
