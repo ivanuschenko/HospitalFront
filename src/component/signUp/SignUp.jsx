@@ -6,6 +6,7 @@ import Body from '../body/Body';
 import SimpleSnackbar from '../snack/Snack';
 import './signUp.scss';
 import BodyImg from '../../img/hospital.svg';
+import { validateLogin, validatePassword } from '../../helper/helperSignUp';
 
 const SignUp = () => {  
   const [newUser, setNewUser] = useState({
@@ -13,47 +14,39 @@ const SignUp = () => {
     password : '',
     confirmPassword: '',
   });
-  const [checkValid, setCheckValid] = useState ({
-    validName: /^[0-9A-Za-z]{6,}$/,
-    validPassword : /^.*(?=.{6,})(?=.*\d)(?=.*[a-z]).*$/                       
-  });  
   const [snackText, setSnackText] = useState('');
   const [open, setOpen] = useState(false); 
   const navigate = useNavigate();
-  const {store} = useContext(Context);  
-   
+  const {store} = useContext(Context);
+  
   const createNewPatient = (e) => {
     e.preventDefault();
-    setOpen(true)  
-    const {
-      validName,
-      validPassword
-    } = checkValid;   
+    setOpen(true)
     const {
       name,
       password,
       confirmPassword
     } = newUser;
-    if (name && password && confirmPassword) {      
-      if(!validName.test(name)){      
-        setSnackText('login should consist min 6 letters')
-      } else {
-        if (!validPassword.test(password)){
-          setSnackText("password should consist min 6 numbers and 1 letter")
-        } else {
-          if (password === confirmPassword ) {
-            const res = store.registration(name, password);
-            res.then(value => (setSnackText(value)))      
-          }
-          else {
-            setSnackText(`password and confirm password are different!`);
-          } 
-        }         
-      }     
-    } else {
-      setSnackText('please input all values')
+
+    if (!name) {
+      setSnackText('please input name')
+    } else if (!validateLogin.test(name)) {      
+      setSnackText('login should consist min 6 letters')
     }
-  }  
+    else if (!password) {
+      setSnackText('please input password')
+    }
+    else if (!validatePassword.test(password)) {
+      setSnackText("password should consist min 6 numbers and 1 letter")
+    }
+    else if (password != confirmPassword) {
+      setSnackText(`password and confirm password are different!`);
+    }
+    else {
+      const res = store.registration(name, password);
+      res.then(value => (setSnackText(value)))    
+    }
+  }
   
   const handleChange = (key, value) => {
     setNewUser({...newUser, [key]:value})
@@ -68,41 +61,43 @@ const SignUp = () => {
       </Header>
       <Body>
         <img src={BodyImg} alt='hospitalLogo'/>
-        <div className='signUp__form'>
+        <div className='signUp-form'>
           <h1>Зарегистрироваться</h1>
-          <div className='signUp__block'>
-            <label htmlFor='signUp__input'>Логин:</label>
+          <div className='signUp-block'>
+            <label htmlFor='signUp-block__input'>Логин:</label>
             <input 
               type='text'
-              className='signUp__input'
+              className='signUp-block__input'
               placeholder='Введите логин'                         
               onChange={(e) => handleChange('name', e.target.value)}
             />
           </div>
-          <div className='signUp__block'>
-            <label htmlFor='signUp__input'>Пароль:</label>
+          <div className='signUp-block'>
+            <label htmlFor='signUp-block__input'>Пароль:</label>
             <input 
               type='password'
-              className='signUp__input'
-              placeholder='введите пароль'
+              className='signUp-block__input'
+              placeholder='Введите пароль'
               onChange={(e) => handleChange('password', e.target.value)}
             />
           </div>
-          <div className='signUp__block'>
-            <label htmlFor='signUp__input'>Повторите пароль:</label>
+          <div className='signUp-block'>
+            <label htmlFor='signUp-block__input'>Повторите пароль:</label>
             <input 
               type='password'
-              className='signUp__input'
+              className='signUp-block__input'
               placeholder='Повторите пароль' 
               onChange={(e) => handleChange('confirmPassword', e.target.value)}
             />              
-          </div>                    
-          <input
-            className='signUp__btn'                  
-            value='Зарегистрироваться'
-            type='submit'
-          />                       
-          <Link className='signUp__a' to='/signIn'>
+          </div>
+          <div className='signUp-block__btn'>
+            <input
+              className='signUp-btn'                  
+              value='Зарегистрироваться'
+              type='button'
+            /> 
+          </div>                                
+          <Link className='signUp-block__link' to='/signIn'>
             <h3>Войти</h3>
           </Link>
         </div>

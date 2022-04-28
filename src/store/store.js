@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { makeAutoObservable } from 'mobx';
 import AuthService from '../services/AuthServices';
-import { url } from '../Constants/Constants';
+import { url } from "../constants";
 
 export default class Store {
   user = {};

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { url } from '../Constants/Constants';
+import { url } from "../constants";
 
 const api = axios.create({
   withCredentials: true,
