@@ -1,11 +1,11 @@
-import React, {useContext, useState } from 'react';
-import './signIn.scss';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Context } from '../../index';
 import Header from '../header/Header';
 import Body from '../body/Body';
-import BodyImg from '../../img/hospital.svg'
-import { Context } from '../../index';
 import SimpleSnackbar from '../snack/Snack';
+import './signIn.scss';
+import BodyImg from '../../img/hospital.svg'
 
 const SignIn = () => {
   const [newUser, setNewUser] = useState({
@@ -65,12 +65,12 @@ const SignIn = () => {
           <div className='signin-block__btn'>
             <button className='signin-btn'>Войти</button>
           </div>          
-          <Link className='signin-block__link' to='/signUp'>
+          <Link className='signup-link' to='/signUp'>
             <p>Зарегистрироваться</p>
           </Link>
         </div>
       </Body>  
-    <SimpleSnackbar snackText={snackText} open = {open} setOpen = {setOpen}/>
+    <SimpleSnackbar snackText={snackText} open={open} setOpen={setOpen}/>
     </form>
   )
 }

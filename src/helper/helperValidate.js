@@ -1,5 +1,5 @@
-export const validateLogin = /^[0-9A-Za-z]{6,}$/;
-export const validatePassword = /^.*(?=.{6,})(?=.*\d)(?=.*[a-z]).*$/
+const validateLogin = /^[0-9A-Za-z]{6,}$/;
+const validatePassword = /^.*(?=.{6,})(?=.*\d)(?=.*[a-z]).*$/
 
 export const checkValidationLogin = (login) => {
   if (!validateLogin.test(login)) {

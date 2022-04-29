@@ -85,9 +85,9 @@ const SignUp = () => {
             />              
           </div>
           <div className='signup-block__btn'>
-            <button className='signin-btn'>Зарегистрироваться</button> 
+            <button className='signup-btn'>Зарегистрироваться</button> 
           </div>                                
-          <Link className='signup-block__link' to='/signIn'>
+          <Link className='signin-link' to='/signIn'>
             <h3>Войти</h3>
           </Link>
         </div>
