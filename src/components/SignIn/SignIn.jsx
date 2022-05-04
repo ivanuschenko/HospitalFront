@@ -25,8 +25,8 @@ const SignIn = () => {
     } = newUser;
     
     e.preventDefault();   
-      const res = store.signIn(name,password);
-      res.then(value => setSnackText(value));        
+    const res = store.signIn(name,password);
+    res.then(value => setSnackText(value));        
   }
   
   const handleChange = (key, value) => {
@@ -41,13 +41,13 @@ const SignIn = () => {
       </div>
       </Header>
       <Main>
-        <img src={BodyImg} alt="hospitalLogo" />
-        <div className='signin-body '>
+        <img src={BodyImg} alt='hospitalLogo' />
+        <div className='signin-body'>
           <h1>Войти в систему</h1>
           <div className='signin-block'>
             <label>Логин:</label>
             <input              
-              type="text"
+              type='text'
               placeholder='Введите логин'
               className='signin-block__input'
               onChange={(e) => handleChange('name', e.target.value)} 
@@ -56,7 +56,7 @@ const SignIn = () => {
           <div className='signin-block'>
             <label>Пароль:</label>
             <input
-              type="password"                         
+              type='password'                         
               placeholder='введите пароль'
               className='signin-block__input'
               onChange={(e) => handleChange('password', e.target.value)}              

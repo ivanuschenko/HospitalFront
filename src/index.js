@@ -9,14 +9,10 @@ const root = createRoot(rootElement);
 
 const store = new Store();
 
-export const Context = createContext({
-  store,
-})
+export const Context = createContext({store})
 
 root.render(    
-  <Context.Provider value={{
-    store
-  }}> 
+  <Context.Provider value={{store}}> 
     <BrowserRouter>    
       <App />
     </BrowserRouter>

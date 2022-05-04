@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { makeAutoObservable } from 'mobx';
-import authService from '../services/AuthServices';
+import authService from '/home/user/Medecine/Front/HospitalFront/src/services/AuthServices';
 import { url } from "../constants";
 
 export default class Store {

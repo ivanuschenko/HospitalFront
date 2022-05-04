@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { url } from "../constants";
+import { url } from '../constants';
 
 const api = axios.create({
   withCredentials: true,
@@ -13,7 +13,7 @@ api.interceptors.request.use((config)=> {
 
 const refresh = () => {
   try {
-    const response =  axios.get(`${url}/api/refresh`, {
+    const response = axios.get(`${url}/api/refresh`, {
       withCredentials: true,
     });
     localStorage.setItem('token', response.data.accessToken);
