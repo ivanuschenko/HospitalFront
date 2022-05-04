@@ -17,21 +17,21 @@ const SignIn = () => {
   const navigate = useNavigate();
   const {store} = useContext(Context);
 
-  const authorised = async (e) => {
-    setOpen(true)
+  const authorised = (e) => {
+    setOpen(true);
     const {
       name,
       password      
     } = newUser;
     
     e.preventDefault();   
-    const res = store.signIn(name,password);
+    const res = store.signIn(name, password);
     res.then(value => setSnackText(value));        
-  }
+  };
   
   const handleChange = (key, value) => {
-    setNewUser({...newUser, [key]:value})
-  }
+    setNewUser({...newUser, [key]:value});
+  };
 
   return(
     <form className='signin' onSubmit={(e) => authorised(e)}>

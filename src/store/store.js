@@ -30,7 +30,7 @@ export default class Store {
       localStorage.setItem('token', response.data.accessToken);
       this.setAuth(true);
       this.setUser(response.data.user);          
-      return ('success')
+      return ('success');
     } catch (e) {
       return(e.response?.data?.message);
     }

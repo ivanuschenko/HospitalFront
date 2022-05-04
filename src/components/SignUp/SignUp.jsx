@@ -21,7 +21,7 @@ const SignUp = () => {
   
   const createNewPatient = (e) => {
     e.preventDefault();
-    setOpen(true)
+    setOpen(true);
     const {
       name,
       password,

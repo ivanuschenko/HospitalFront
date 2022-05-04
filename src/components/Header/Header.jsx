@@ -7,6 +7,7 @@ const Header = ({children}) => {
       <img src={Logo} alt='logo' />      
       {children}
       </div>  
-  )
-}
+  );
+};
+
 export default Header;

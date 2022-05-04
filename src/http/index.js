@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { url } from '../constants';
+import { url } from '/home/user/Medecine/Front/HospitalFront/src/constants';
 
 const api = axios.create({
   withCredentials: true,
