@@ -3,7 +3,7 @@ body {
   font-weight: 300;  
   background-color: #C5E9FF;
   
-  .signin {
+  .signup {
     width: 80vw;
     margin: 0 auto;
     
@@ -12,7 +12,7 @@ body {
       padding: 2rem 4rem;
       background-color: white;
     
-    .signin-block {      
+    .signup-block {      
       display: flex;
       flex-direction: column;
       background-color: white;
@@ -26,16 +26,17 @@ body {
         border-radius: 0.3rem;
         font-size: 1.3rem;
       }
-        .signup-button__login{
+        .signup-button__registrate {
           width: 15rem;
           background-color: white;
           border-radius: 0.3rem;
           font-size: 1.3rem;
           align-self: flex-end;
           justify-content: center;
+          align-items: center;
         }
 
-        .signup-link__registrate{
+        .signup-link__login {
           padding-top: 1rem;          
           font-size: 2rem;
           font-weight: 300;

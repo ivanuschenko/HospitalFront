@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Context } from '../../index';
+import { Context } from '/home/user/Medecine/Front/HospitalFront/src/index';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import SimpleSnackbar from '../Snack/Snack';
 import './signUp.scss';
-import BodyImg from '../../img/hospital.svg';
-import { checkValidationLogin , checkValidationPassword } from '../../helper/helperValidate';
+import BodyImg from '/home/user/Medecine/Front/HospitalFront/src/img/hospital.svg';
+import { checkValidationLogin , checkValidationPassword } from '/home/user/Medecine/Front/HospitalFront/src/helper/helperValidate';
 
 const SignUp = () => {  
   const [newUser, setNewUser] = useState({

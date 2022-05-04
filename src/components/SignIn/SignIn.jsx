@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Context } from '../../index';
+import { Context } from '/home/user/Medecine/Front/HospitalFront/src/index';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import SimpleSnackbar from '../Snack/Snack';
 import './signIn.scss';
-import BodyImg from '../../img/hospital.svg';
+import BodyImg from '/home/user/Medecine/Front/HospitalFront/src/img/hospital.svg';
 
 const SignIn = () => {
   const [newUser, setNewUser] = useState({
@@ -63,8 +63,8 @@ const SignIn = () => {
             />         
           </div>
           <div className='signin-block'>
-            <button className='signup-block signup-button__login'>Войти</button>
-            <Link className='signup-block signup-link__registrate' to='/signUp'>
+            <button className='signin-block signup-button__login'>Войти</button>
+            <Link className='signin-block signup-link__registrate' to='/signUp'>
               Зарегистрироваться
             </Link>
           </div>

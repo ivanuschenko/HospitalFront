@@ -1,5 +1,5 @@
 import './header.scss';
-import Logo from '../../img/logo.svg';
+import Logo from '/home/user/Medecine/Front/HospitalFront/src/img/logo.svg';
 
 const Header = ({children}) => {
   return (
