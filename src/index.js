@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import App from './App';
+import App from '/home/user/hospitalFront/src/App';
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import Store from './store/store';
@@ -14,9 +14,9 @@ export const Context = createContext({
 })
 
 root.render(    
-  <Context.Provider value={
+  <Context.Provider value={{
     store
-  }> 
+  }}> 
     <BrowserRouter>    
       <App />
     </BrowserRouter>

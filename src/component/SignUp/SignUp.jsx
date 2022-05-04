@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Context } from '../../index';
-import Header from '../header/Header';
-import Body from '../body/Body';
-import SimpleSnackbar from '../snack/Snack';
+import Header from '../Header/Header';
+import Main from '../Main/Main';
+import SimpleSnackbar from '../Snack/Snack';
 import './signUp.scss';
 import BodyImg from '../../img/hospital.svg';
 import { checkValidationLogin , checkValidationPassword } from '../../helper/helperValidate';
@@ -26,16 +26,14 @@ const SignUp = () => {
       name,
       password,
       confirmPassword
-    } = newUser;
-
-    const resultValidationLogin = checkValidationLogin(name);
-    const resultValidationPass = checkValidationPassword(password)
-    if (!resultValidationLogin) {
+    } = newUser;  
+   
+    if (!checkValidationLogin(name)) {
       setSnackText('login should consist min 6 letters');
-    } else if (!resultValidationPass) {
+    } else if (!checkValidationPassword(password)) {
       setSnackText('password should consist min 6 numbers and 1 letter');
     } else if(password !== confirmPassword) {
-      setSnackText('Password and confirm pasword are different!')
+      setSnackText('Password and confirm pasword are different!');
     } else {
       const res = store.registration(name, password);
       res.then(value => setSnackText(value));
@@ -43,7 +41,7 @@ const SignUp = () => {
   }
    
   const handleChange = (key, value) => {
-    setNewUser({...newUser, [key]:value})
+    setNewUser({...newUser, [key]:value});
   }
 
   return (    
@@ -53,12 +51,12 @@ const SignUp = () => {
           <h1>Зарегистрироваться в системе</h1>   
         </div>               
       </Header>
-      <Body>
+      <Main>
         <img src={BodyImg} alt='hospitalLogo'/>
-        <div className='signup-form'>
+        <div className='signup-body'>
           <h1>Регистрация</h1>
           <div className='signup-block'>
-            <label htmlFor='signup-block__input'>Логин:</label>
+            <label>Логин:</label>
             <input 
               type='text'
               className='signup-block__input'
@@ -67,7 +65,7 @@ const SignUp = () => {
             />
           </div>
           <div className='signup-block'>
-            <label htmlFor='signup-block__input'>Пароль:</label>
+            <label>Пароль:</label>
             <input 
               type='password'
               className='signup-block__input'
@@ -76,7 +74,7 @@ const SignUp = () => {
             />
           </div>
           <div className='signup-block'>
-            <label htmlFor='signup-block__input'>Повторите пароль:</label>
+            <label>Повторите пароль:</label>
             <input 
               type='password'
               className='signup-block__input'
@@ -84,14 +82,14 @@ const SignUp = () => {
               onChange={(e) => handleChange('confirmPassword', e.target.value)}
             />              
           </div>
-          <div className='signup-block__btn'>
-            <button className='signup-btn'>Зарегистрироваться</button> 
-          </div>                                
-          <Link className='signin-link' to='/signIn'>
-            <h3>Войти</h3>
-          </Link>
+          <div className='signup-block'>
+            <button className='signup-block signup-button__registrate'>Зарегистрироваться</button>
+            <Link className='signup-block signup-link__login' to='/signIn'>
+              Войти
+            </Link> 
+          </div>
         </div>
-      </Body> 
+      </Main> 
       <SimpleSnackbar snackText={snackText} open={open} setOpen={setOpen}/>         
     </form>
   )

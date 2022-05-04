@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Context } from '../../index';
-import Header from '../header/Header';
-import Body from '../body/Body';
-import SimpleSnackbar from '../snack/Snack';
+import Header from '../Header/Header';
+import Main from '../Main/Main';
+import SimpleSnackbar from '../Snack/Snack';
 import './signIn.scss';
-import BodyImg from '../../img/hospital.svg'
+import BodyImg from '../../img/hospital.svg';
 
 const SignIn = () => {
   const [newUser, setNewUser] = useState({
@@ -25,10 +25,10 @@ const SignIn = () => {
     } = newUser;
     
     e.preventDefault();   
-      const res = store.signIn(name,password)
-      res.then(value => setSnackText(value))        
+      const res = store.signIn(name,password);
+      res.then(value => setSnackText(value));        
   }
-
+  
   const handleChange = (key, value) => {
     setNewUser({...newUser, [key]:value})
   }
@@ -40,12 +40,12 @@ const SignIn = () => {
         <h1>Войти в систему</h1>
       </div>
       </Header>
-      <Body>
+      <Main>
         <img src={BodyImg} alt="hospitalLogo" />
-        <div className='signin-form'>
+        <div className='signin-body '>
           <h1>Войти в систему</h1>
           <div className='signin-block'>
-            <label htmlFor="signin-block__input">Логин:</label>
+            <label>Логин:</label>
             <input              
               type="text"
               placeholder='Введите логин'
@@ -54,7 +54,7 @@ const SignIn = () => {
             />       
           </div>
           <div className='signin-block'>
-            <label htmlFor="signin-block__input">Пароль:</label>
+            <label>Пароль:</label>
             <input
               type="password"                         
               placeholder='введите пароль'
@@ -62,14 +62,14 @@ const SignIn = () => {
               onChange={(e) => handleChange('password', e.target.value)}              
             />         
           </div>
-          <div className='signin-block__btn'>
-            <button className='signin-btn'>Войти</button>
-          </div>          
-          <Link className='signup-link' to='/signUp'>
-            <p>Зарегистрироваться</p>
-          </Link>
+          <div className='signin-block'>
+            <button className='signup-block signup-button__login'>Войти</button>
+            <Link className='signup-block signup-link__registrate' to='/signUp'>
+              Зарегистрироваться
+            </Link>
+          </div>
         </div>
-      </Body>  
+      </Main>  
     <SimpleSnackbar snackText={snackText} open={open} setOpen={setOpen}/>
     </form>
   )
