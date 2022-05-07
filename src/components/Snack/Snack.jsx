@@ -1,11 +1,11 @@
 import { Snackbar } from '@mui/material';
 
- const SimpleSnackbar = ({snackText, open, setOpen}) => {   
+ const SimpleSnackbar = ({snackText, openSnack, setOpenSnack}) => {   
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-    setOpen(false);
+    setOpenSnack(false);
   };
  
   return (
@@ -15,7 +15,7 @@ import { Snackbar } from '@mui/material';
           vertical: 'bottom',
           horizontal: 'left',
         }}
-        open={open}
+        open={openSnack}
         autoHideDuration={6000}
         onClose={handleClose}
         message={snackText}       

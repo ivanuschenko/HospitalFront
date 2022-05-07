@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import SignIn from '/home/user/Medecine/Front/HospitalFront/src/components/SignIn/SignIn';
-import SignUp from '/home/user/Medecine/Front/HospitalFront/src/components/SignUp/SignUp';
+import SignIn from 'src/components/SignIn/SignIn';
+import SignUp from 'src/components/SignUp/SignUp';
 import './app.scss';
 
 const App = () => {

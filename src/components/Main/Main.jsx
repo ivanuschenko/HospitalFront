@@ -1,8 +1,8 @@
-import './main.scss';
+import './style.scss';
 
 const Main = ({children}) => {
   return (
-    <div className='body-form'>
+    <div className='main-form'>
       {children}
     </div>
   ); 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { url } from '/home/user/Medecine/Front/HospitalFront/src/constants';
+import { url } from 'src/constants';
 
 const api = axios.create({
   withCredentials: true,
@@ -10,17 +10,6 @@ api.interceptors.request.use((config)=> {
   config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
   return config;
 });
-
-const refresh = () => {
-  try {
-    const response = axios.get(`${url}/api/refresh`, {
-      withCredentials: true,
-    });
-    localStorage.setItem('token', response.data.accessToken);
-  } catch (e) {
-    alert('Не авторизован');
-  }
-};
 
 api.interceptors.response.use((config) => {
   return config;
@@ -35,5 +24,16 @@ api.interceptors.response.use((config) => {
     }
   } 
 );
+
+const refresh = async () => {
+  try {
+    const response = await axios.get(`${url}/api/refresh`, {
+      withCredentials: true,
+    });
+    localStorage.setItem('token', response.data.accessToken);
+  } catch (e) {
+    alert('Не авторизован');
+  }
+};
 
 export default api;

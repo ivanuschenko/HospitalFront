@@ -1,0 +1,46 @@
+.signin {
+  width: 80vw;
+  margin: 0 auto;
+  
+  &-body {
+    margin-top: 3rem;
+    padding: 2rem 4rem;
+    background-color: white;
+  
+  .signin-block {      
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 25rem;
+    height: 7rem;
+    padding: 0.5rem;
+    font-size: 1.3rem;
+
+    &__input {
+      padding: 1rem;
+      border-radius: 0.3rem;
+      font-size: 1.3rem;
+    }
+      .signin-button__login {
+        width: 15rem;
+        background-color: white;
+        border-radius: 0.3rem;
+        font-size: 1.3rem;
+        align-self: flex-end;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .signin-link__registrate {
+        padding-top: 1rem;          
+        font-size: 2rem;
+        font-weight: 300;
+        text-align: end;
+        color: black;
+        text-decoration: none;
+      }       
+    }    
+  }
+}
+
+

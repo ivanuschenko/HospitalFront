@@ -1,8 +1,8 @@
 import React, { createContext } from 'react';
-import App from '/home/user/Medecine/Front/HospitalFront/src/App';
+import App from 'src/App';
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-import Store from '/home/user/Medecine/Front/HospitalFront/src/store/store';
+import Store from 'src/store/store';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
