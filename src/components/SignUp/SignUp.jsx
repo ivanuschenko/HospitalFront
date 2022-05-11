@@ -38,7 +38,7 @@ const SignUp = () => {
       return setSnackText('Password and confirm pasword are different!');      
     }    
     const res = await store.registration(name, password);
-    res === true ? navigate('/signIn') : setSnackText(res);    
+    localStorage.getItem('token') ? navigate('/signIn') : setSnackText(res);    
   }  
    
   const handleChange = (key, value) => {

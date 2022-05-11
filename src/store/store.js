@@ -6,16 +6,11 @@ import { url } from 'src/constants';
 // this folder needs for interaction with global storage(context)
 
 export default class Store {
-  user = {};
-  isAuth = false;
+  user = {};  
   isLoading = false;
 
   constructor() {
     makeAutoObservable(this);
-  }
-
-  setAuth(boolean) {
-    this.isAuth = boolean;
   }
 
   setUser(user) {
@@ -35,9 +30,7 @@ export default class Store {
     try {      
       const response = await authService.registration(name, password);          
       localStorage.setItem('token', response.data.accessToken);
-      this.setAuth(true);
-      this.setUser(response.data.user);
-      return true;
+      this.setUser(response.data.user);         
     } catch (e) {
       return(e.response?.data?.message);
     }
@@ -46,10 +39,8 @@ export default class Store {
   signIn = async (name, password) => {
     try {
       const response = await authService.signIn(name, password);      
-      localStorage.setItem('token', response.data.accessToken);            
-      this.setAuth(true);
+      localStorage.setItem('token', response.data.accessToken);
       this.setUser(response.data.user);
-      return true;            
     } catch (e) {
       return(e.response?.data?.message);
     }
@@ -59,8 +50,7 @@ export default class Store {
     this.setLoading(true);
     try {
       const response = await axios.get(`${url}/refresh`, {withCredentials: true});          
-      localStorage.setItem('token', response.data.accessToken);
-      this.setAuth(true);
+      localStorage.setItem('token', response.data.accessToken);      
       this.setUser(response.data.user);
     } catch (e) {
       alert(e.response?.data?.message);

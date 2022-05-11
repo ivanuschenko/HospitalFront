@@ -25,7 +25,7 @@ const SignIn = () => {
       password      
     } = newUser;  
     const res = await store.signIn(name, password);
-    res ? navigate('/appoinment') : setSnackText(res);       
+    localStorage.getItem('token') ? navigate('/appoinment') : setSnackText(res)         
   };
   
   const handleChange = (key, value) => {
