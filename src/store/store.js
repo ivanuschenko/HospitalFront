@@ -26,10 +26,10 @@ export default class Store {
     this.isLoading = boolean;
   }
 
-  // request come here after called from components, where in try/catch block run static method of authService class and response returns to components.
-  // If we have bad response, block catch will send type of mistakes which will be show in snackbar.
-  // I wrote return('success') recently like a "plug" for return in snackbar successful execution of request, I did it becouse i havent
-  // any  components for this time of check. 
+  /* request come here after called from components, where in try/catch block run static method of authService class and response returns to components.
+  If we have bad response, block catch will send type of mistakes which will be show in snackbar.
+  I wrote return('success') recently like a "plug" for return in snackbar successful execution of request, I did it becouse i havent
+  any  components for this time of check. */
 
   registration = async (name, password) => {
     try {      

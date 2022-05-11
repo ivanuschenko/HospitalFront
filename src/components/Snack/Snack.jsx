@@ -23,4 +23,4 @@ import { Snackbar } from '@mui/material';
     </div>
   );
 }
-export default SimpleSnackbar
+export default SimpleSnackbar;

@@ -12,27 +12,27 @@ const SignIn = () => {
     name: '',
     password : ''    
   });
-  const [open, setOpen] = useState(false);
+  const [openSnack, setOpenSnack] = useState(false);
   const [snackText, setSnackText] = useState(''); 
   const navigate = useNavigate();
   const {store} = useContext(Context);
 
   const authorised = async (e) => {
     e.preventDefault(); 
-    setOpen(true);
+    setOpenSnack(true);
     const {
       name,
       password      
     } = newUser;  
     const res = await store.signIn(name, password);
-    res ? navigate('/appointment') : setSnackText('Untracked error')       
+    res ? navigate('/appoinment') : setSnackText(res);       
   };
   
   const handleChange = (key, value) => {
     setNewUser({...newUser, [key]:value});
   };
 
-  return(
+  return (
     <div className='signin'>
       <Header>
       <div className='header-block__title'>
@@ -45,19 +45,21 @@ const SignIn = () => {
           <h1>Войти в систему</h1>
           <form className='signin-form' onSubmit={authorised}>          
             <div className='signin-block'>
-              <label>Логин:</label>
+              <label htmlFor='signin-input__name'>Логин:</label>
               <input              
                 type='text'
                 placeholder='Введите логин'
+                id='signin-input__name'
                 className='signin-block__input'
                 onChange={(e) => handleChange('name', e.target.value)} 
               />       
             </div>
             <div className='signin-block'>
-              <label>Пароль:</label>
+              <label htmlFor='signin-input__password'>Пароль:</label>
               <input
                 type='password'                         
                 placeholder='введите пароль'
+                id='signin-input__password'
                 className='signin-block__input'
                 onChange={(e) => handleChange('password', e.target.value)}              
               />         
@@ -71,7 +73,7 @@ const SignIn = () => {
           </form>
         </div>
       </Main>  
-    <SimpleSnackbar snackText={snackText} open={open} setOpen={setOpen}/>
+    <SimpleSnackbar snackText={snackText} openSnack={openSnack} setOpenSnack={setOpenSnack}/>
     </div>
   )
 }
