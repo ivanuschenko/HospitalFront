@@ -20,7 +20,7 @@ const SignUp = () => {
   const {store} = useContext(Context);
   
   const createNewPatient = async (e) => {       
-    e.preventDefault();      
+    e.preventDefault();         
     const {
       name,
       password,
@@ -29,22 +29,27 @@ const SignUp = () => {
     
     if (!checkValidationLogin(name)) {
       setSnackText('login should consist min 6 letters');
+      setOpenSnack(true); 
       return;               
     } 
     if (!checkValidationPassword(password)) {
       setSnackText('password should consist min 6 numbers and 1 letter');
+      setOpenSnack(true); 
       return;                 
     }        
     if (password !== confirmPassword) {
       setSnackText('Password and confirm pasword are different!');
+      setOpenSnack(true); 
       return;      
     }    
     const res = await store.registration(name, password);
         
     if (res) {
+      setOpenSnack(true);       
       setSnackText(res);
-      setOpenSnack(true);
+      console.log(openSnack)      
     } else {
+      console.log(openSnack)        
       navigate('/signIn');  
     }          
   }  
