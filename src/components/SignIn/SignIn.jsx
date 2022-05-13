@@ -18,14 +18,19 @@ const SignIn = () => {
   const {store} = useContext(Context);
 
   const authorised = async (e) => {
-    e.preventDefault(); 
-    setOpenSnack(true);
+    e.preventDefault();     
     const {
       name,
       password      
     } = newUser;  
-    const res = await store.signIn(name, password);    
-    !res ? navigate('/appoinment') : setSnackText(res);         
+    const res = await store.signIn(name, password);
+        
+    if (res) {
+      setOpenSnack(true);
+      setSnackText(res);
+    } else {      
+      navigate('/appoinment');  
+    }            
   };
   
   const handleChange = (key, value) => {

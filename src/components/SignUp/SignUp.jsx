@@ -20,8 +20,7 @@ const SignUp = () => {
   const {store} = useContext(Context);
   
   const createNewPatient = async (e) => {       
-    e.preventDefault();
-    setOpenSnack(true);
+    e.preventDefault();      
     const {
       name,
       password,
@@ -41,7 +40,13 @@ const SignUp = () => {
       return;      
     }    
     const res = await store.registration(name, password);
-    !res ? navigate('/signIn') : setSnackText(res);    
+        
+    if (res) {
+      setSnackText(res);
+      setOpenSnack(true);
+    } else {
+      navigate('/signIn');  
+    }          
   }  
    
   const handleChange = (key, value) => {
