@@ -22,10 +22,6 @@ export default class Store {
   I wrote return('success') recently like a "plug" for return in snackbar successful execution of request, I did it becouse i havent
   any  components for this time of check. */
 
-  /* This 'e.response.data.message' return error which generated on backend in static method in ApiError class which extend class 'Error'.
-  For example then we trying register user with login which already exist in database, we'll got error that 'this user with this name already exist'   
-  */
-
   registration = async (name, password) => {
     try {      
       const response = await authService.registration(name, password);          
@@ -42,6 +38,11 @@ export default class Store {
       localStorage.setItem('token', response.data.accessToken);
       this.setUser(response.data.user);
     } catch (e) {
+
+      /* This 'e.response.data.message' return error which generated on backend in static method in ApiError class which extend class 'Error'.
+      For example then we trying register user with login which already exist in database, we'll got error that 'this user with this name already exist'   
+      */
+
       return e.response.data.message;
     }
   }   

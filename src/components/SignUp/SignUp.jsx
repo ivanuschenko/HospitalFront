@@ -41,7 +41,7 @@ const SignUp = () => {
       return;      
     }    
     const res = await store.registration(name, password);
-    !res ? navigate('/signIn') : setSnackText(res)    
+    !res ? navigate('/signIn') : setSnackText(res);    
   }  
    
   const handleChange = (key, value) => {
