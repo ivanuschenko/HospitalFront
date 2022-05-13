@@ -46,10 +46,8 @@ const SignUp = () => {
         
     if (res) {
       setOpenSnack(true);       
-      setSnackText(res);
-      console.log(openSnack)      
-    } else {
-      console.log(openSnack)        
+      setSnackText(res);         
+    } else {             
       navigate('/signIn');  
     }          
   }  
