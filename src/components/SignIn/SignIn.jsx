@@ -24,8 +24,8 @@ const SignIn = () => {
       name,
       password      
     } = newUser;  
-    const res = await store.signIn(name, password);
-    localStorage.getItem('token') ? navigate('/appoinment') : setSnackText(res)         
+    const res = await store.signIn(name, password);    
+    !res ? navigate('/appoinment') : setSnackText(res)         
   };
   
   const handleChange = (key, value) => {
@@ -45,28 +45,26 @@ const SignIn = () => {
           <h1>Войти в систему</h1>
           <form className='signin-form' onSubmit={authorised}>          
             <div className='signin-block'>
-              <label htmlFor='signin-input__name'>Логин:</label>
+              <label htmlFor='signin-block__input-name'>Логин:</label>
               <input              
                 type='text'
-                placeholder='Введите логин'
-                id='signin-input__name'
-                className='signin-block__input'
+                placeholder='Введите логин'                
+                className='signin-block__input-name'
                 onChange={(e) => handleChange('name', e.target.value)} 
               />       
             </div>
             <div className='signin-block'>
-              <label htmlFor='signin-input__password'>Пароль:</label>
+              <label htmlFor='signin-block__input-password'>Пароль:</label>
               <input
                 type='password'                         
-                placeholder='введите пароль'
-                id='signin-input__password'
-                className='signin-block__input'
+                placeholder='введите пароль'                
+                className='signin-block__input-password'
                 onChange={(e) => handleChange('password', e.target.value)}              
               />         
             </div>
             <div className='signin-block'>
-              <button className='signin-block signin-button__login'>Войти</button>
-              <Link className='signin-block signin-link__registrate' to='/signUp'>
+              <button className='signin-block__button-login'>Войти</button>
+              <Link className='signin-block__link-registrate' to='/signUp'>
                 Зарегистрироваться
               </Link>
             </div>

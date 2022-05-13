@@ -29,16 +29,19 @@ const SignUp = () => {
     } = newUser;     
     
     if (!checkValidationLogin(name)) {
-      return setSnackText('login should consist min 6 letters');               
+      setSnackText('login should consist min 6 letters');
+      return;               
     } 
     if (!checkValidationPassword(password)) {
-      return setSnackText('password should consist min 6 numbers and 1 letter');                 
+      setSnackText('password should consist min 6 numbers and 1 letter');
+      return;                 
     }        
     if (password !== confirmPassword) {
-      return setSnackText('Password and confirm pasword are different!');      
+      setSnackText('Password and confirm pasword are different!');
+      return;      
     }    
     const res = await store.registration(name, password);
-    localStorage.getItem('token') ? navigate('/signIn') : setSnackText(res);    
+    !res ? navigate('/signIn') : setSnackText(res)    
   }  
    
   const handleChange = (key, value) => {
@@ -58,38 +61,38 @@ const SignUp = () => {
           <h1>Регистрация</h1>
           <form className='signup-form' onSubmit={createNewPatient}>          
             <div className='signup-block'>
-              <label htmlFor='signup-block__input'>Логин:</label>
+              <label htmlFor='signup-block__input-login'>Логин:</label>
               <input 
                 type='text'
-                className='signup-block__input'
-                id='signup-block__input'
+                id='signup-block__input-login'
+                className='signup-block__input'                
                 placeholder='Введите логин'                         
                 onChange={(e) => handleChange('name', e.target.value)}
               />
             </div>
             <div className='signup-block'>
-              <label htmlFor='signup-block__password'>Пароль:</label>
+              <label htmlFor='signup-block__input-password'>Пароль:</label>
               <input 
                 type='password'
-                className='signup-block__input'
-                id='signup-block__password'
+                id='signup-block__input-password'
+                className='signup-block__input'                
                 placeholder='Введите пароль'
                 onChange={(e) => handleChange('password', e.target.value)}
               />
             </div>
             <div className='signup-block'>
-              <label htmlFor='signup-block__confirm'>Повторите пароль:</label>
+              <label htmlFor='signup-block__input-confirmPassword'>Повторите пароль:</label>
               <input
                 type='password'
-                className='signup-block__input'
-                id='signup-block__confirm'
+                id='signup-block__input-confirmPassword'
+                className='signup-block__input'                
                 placeholder='Повторите пароль' 
                 onChange={(e) => handleChange('confirmPassword', e.target.value)}
               />              
             </div>
             <div className='signup-block'>
-              <button className='signup-block signup-button__registrate'>Зарегистрироваться</button>
-              <Link className='signup-block signup-link__login' to='/signIn'>
+              <button className='signup-block__button-registrate'>Зарегистрироваться</button>
+              <Link className='signup-block__link-login' to='/signIn'>
                 Войти
               </Link> 
             </div>

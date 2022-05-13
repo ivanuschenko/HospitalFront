@@ -1,5 +1,5 @@
 .signup {
-  width: 80vw;
+  width: 100vw;
   margin: 0 auto;
   
   &-body {
@@ -20,25 +20,27 @@
       padding: 1rem;
       border-radius: 0.3rem;
       font-size: 1.3rem;
-    }
-      .signup-button__registrate {
-        width: 15rem;
-        background-color: white;
-        border-radius: 0.3rem;
-        font-size: 1.3rem;
-        align-self: flex-end;
-        justify-content: center;
-        align-items: center;
-      }
+    }    
 
-      .signup-link__login {
-        padding-top: 1rem;          
-        font-size: 2rem;
-        font-weight: 300;
-        text-align: end;
-        color: black;
-        text-decoration: none;
-      }       
+    &__button-registrate {
+      width: 15rem;
+      height: 3rem;
+      background-color: white;
+      border-radius: 0.3rem;
+      font-size: 1.3rem;
+      align-self: flex-end;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__link-login {
+      padding-top: 1rem;          
+      font-size: 2rem;
+      font-weight: 300;
+      text-align: end;
+      color: black;
+      text-decoration: none;
+    }       
     }    
   }
 }
