@@ -10,10 +10,13 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "customize-cra": "^1.0.0",
     "lodash": "^4.17.21",
     "mobx": "^6.5.0",
     "node-sass": "^7.0.1",
     "react": "^18.0.0",
+    "react-app-rewired": "^2.2.1",
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.29.0",
     "react-lite": "^0.15.40",
@@ -25,9 +28,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
