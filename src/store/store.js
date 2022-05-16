@@ -66,8 +66,8 @@ export default class Store {
       });
       localStorage.setItem('token', response.data.accessToken);
     } catch (e) {
-      alert('Не авторизован');
-      this.setUser({})
+      this.setUser({});
+      alert('Не авторизован');      
     }
   };  
 }
