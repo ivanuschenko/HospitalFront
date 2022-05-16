@@ -4,9 +4,9 @@ import { Context } from 'src/index';
 import Header from 'src/components/Header/Header';
 import Main from 'src/components/Main/Main';
 import SimpleSnackbar from 'src/components/Snack/Snack';
+import { checkValidationLogin , checkValidationPassword } from 'src/helper/helperValidate';
 import './style.scss';
 import BodyImg from 'src/img/hospital.svg';
-import { checkValidationLogin , checkValidationPassword } from 'src/helper/helperValidate';
 
 const SignUp = () => {  
   const [newUser, setNewUser] = useState({
@@ -17,40 +17,41 @@ const SignUp = () => {
   const [snackText, setSnackText] = useState('');
   const [openSnack, setOpenSnack] = useState(false);  
   const navigate = useNavigate();
-  const {store} = useContext(Context);
-  
+  const {store} = useContext(Context); 
+
   const createNewPatient = async (e) => {       
     e.preventDefault();         
     const {
       name,
       password,
       confirmPassword
-    } = newUser;     
+    } = newUser;           
     
     if (!checkValidationLogin(name)) {
-      setSnackText('login should consist min 6 letters');
-      setOpenSnack(true); 
+      showResultValidation('login should consist min 6 letters')        
       return;               
     } 
     if (!checkValidationPassword(password)) {
-      setSnackText('password should consist min 6 numbers and 1 letter');
-      setOpenSnack(true); 
+      showResultValidation('password should consist min 6 numbers and 1 letter');      
       return;                 
     }        
     if (password !== confirmPassword) {
-      setSnackText('Password and confirm pasword are different!');
-      setOpenSnack(true); 
+      showResultValidation('Password and confirm pasword are different!');      
       return;      
     }    
     const res = await store.registration(name, password);
         
     if (res) {
-      setOpenSnack(true);       
-      setSnackText(res);         
+      showResultValidation(res);        
     } else {             
       navigate('/signIn');  
     }          
-  }  
+  }
+
+  const showResultValidation = (message) => {
+    setOpenSnack(true);
+    setSnackText(message);
+  }    
    
   const handleChange = (key, value) => {
     setNewUser({...newUser, [key]:value});
@@ -59,7 +60,7 @@ const SignUp = () => {
   return (    
     <div className='signup'>
       <Header>
-        <div className='header-block__title'>
+        <div className='signup-header__title'>
           <h1>Зарегистрироваться в системе</h1>   
         </div>               
       </Header>

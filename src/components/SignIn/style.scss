@@ -1,6 +1,11 @@
 .signin {
   width: 100vw;
   margin: 0 auto;
+
+  &-header__title {
+    padding: 0 2rem;
+    align-self: center;  
+  }
   
   &-body {
     margin-top: 3rem;

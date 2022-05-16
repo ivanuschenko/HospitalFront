@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { makeAutoObservable } from 'mobx';
 import authService from 'src/services/AuthServices';
 import { url } from 'src/constants';
 
@@ -68,6 +67,7 @@ export default class Store {
       localStorage.setItem('token', response.data.accessToken);
     } catch (e) {
       alert('Не авторизован');
+      this.setUser({})
     }
   };  
 }

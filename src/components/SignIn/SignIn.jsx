@@ -40,7 +40,7 @@ const SignIn = () => {
   return (
     <div className='signin'>
       <Header>
-      <div className='header-block__title'>
+      <div className='signin-header__title'>
         <h1>Войти в систему</h1>
       </div>
       </Header>
