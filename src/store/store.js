@@ -1,5 +1,6 @@
 import axios from 'axios';
 import authService from 'src/services/AuthServices';
+import appointmentService from 'src/services/AppointmentService';
 import { url } from 'src/constants';
 
 // this folder needs for interaction with global storage(context)
@@ -69,5 +70,34 @@ export default class Store {
       this.setUser({});
       alert('Не авторизован');      
     }
-  };  
+  }
+
+  signOut = async () => {
+    try {
+      const response = await authService.signOut();
+      localStorage.removeItem('token');            
+      this.setAuth(false);
+      this.setUser({});            
+    } catch (e) {
+      alert (e.response.data.message) ;
+    }
+  }     
+
+  getAllAppointments = async () => {    
+    try {
+      const response = await appointmentService.fetchAppointments();  
+      return response;                   
+    } catch (e) {
+      alert('Ошибка getAllAppointments ' + e.name + ":" + e.message);      
+    }
+  }
+
+  createAppointment = async (name, doctor, date, complaint) => {
+    try {
+      const response = await appointmentService.createAppointment(name, doctor, date, complaint);
+      return response;     
+    } catch (e) {
+      alert('Ошибка createAppointment ' + e.name + ":" + e.message);
+    } 
+  }
 }

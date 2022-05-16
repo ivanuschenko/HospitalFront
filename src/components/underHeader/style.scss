@@ -1,0 +1,42 @@
+.underheader-form {
+  width: 100%;
+  align-items: flex-end;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  height: 12vh;
+  box-shadow: 0rem 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.25);
+  padding: 0 0 1rem 0;
+
+  .underheader-block {
+    display: flex;
+    flex-direction: column;
+
+    .underheader-input {
+      font-size: 1.2rem;
+      width: 15rem;    
+      height: 3rem;
+    }
+    
+    .underheader-label {
+      font-size: 1.2rem;
+      align-self: flex-start;
+      border: 0.1rem grey;
+      border-radius: 0.3rem;
+    }    
+  }
+
+  .underheader-button {
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    height: 3rem;
+    width: 10rem;
+    border: 0.1rem grey;
+    background-color: white;
+    border-radius: 0.3rem;
+  }  
+}
