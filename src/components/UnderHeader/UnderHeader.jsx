@@ -19,7 +19,7 @@ const UnderHeader = ({list, setList, appointment, setAppointment}) => {
     };
   };
 
-  const addAppoint = async (e) => {
+  const addAppointment = async (e) => {
     e.preventDefault();    
     const response = await store.createAppointment(inputName, inputDoctor, inputData, inputComplaint); 
     if (Array.isArray(response.data)) setList(response.data)          
@@ -76,7 +76,7 @@ const UnderHeader = ({list, setList, appointment, setAppointment}) => {
           onChange={(e) => handleChange('inputComplaint', e.target.value)}           
         />
       </div>      
-      <button className='underheader-button' disabled = {disableButton()} onClick = {addAppoint}>Добавить</button>
+      <button className='underheader-button' disabled = {disableButton()} onClick = {addAppointment}>Добавить</button>
     </form>
   )
 }

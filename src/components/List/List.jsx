@@ -5,11 +5,11 @@ import './style.scss';
 
 const List = ({list}) => {
 
-  const editAppoint = (id) => {
+  const editAppointment = (id) => {
     //logic for open popup for edit
   };
 
-  const deleteAppoint = (id) => {
+  const deleteAppointment = (id) => {
     //logic for open popup for delete
   };
 
@@ -25,8 +25,8 @@ const List = ({list}) => {
                 <td className='list-table__line-cell'><Moment format='DD.MM.YYYY'>{date}</Moment></td>
                 <td className='list-table__line-cell'>{complaint}</td>
                 <td className='list-table__line-cell'>
-                  <img src = {Edit} alt='Edit' onClick={() => editAppoint(_id)} />
-                  <img src = {Delete} alt='Delete' onClick={() => deleteAppoint(_id)} />
+                  <img src = {Edit} alt='Edit' onClick={() => editAppointment(_id)} />
+                  <img src = {Delete} alt='Delete' onClick={() => deleteAppointment(_id)} />
                 </td>
               </tr>                   
             )

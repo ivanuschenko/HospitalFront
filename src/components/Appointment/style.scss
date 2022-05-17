@@ -3,6 +3,12 @@
   margin: 0 auto;
 }
 
+.appointments-header__button {
+  background-color: white;
+  padding: 0.5rem 2.7rem;
+  font-size: 1.5rem;
+}
+
 .appointments-body {
   width: 100%;
   display: flex;
@@ -18,17 +24,13 @@
     width: 95%;
     border-collapse: collapse;
     align-items: center;
-    border: 1px solid black;    
+    border: 0.1rem solid black;    
    
     &__head {
       width: 100%;      
       background-color: #C4C4C4;
       height: 3.4rem;
-    }
-    
-    &__head-cell {
-      width: 20%
-    }
+    }  
   
     &__list {
       width: 100%;
@@ -45,19 +47,7 @@
       width: 15%;
       display: flex;
       justify-content: space-around;
-    }
-    
-    &__line-cell {
-      width: 22%;
-      border-right: 0.1rem solid black;
-      text-align: center;
-      padding: 1.65rem 0;
-    }
-    
-    &__line-cell:last-child {
-      display: flex;
-      justify-content: space-evenly;
-      border: none;
-    }
+    } 
+       
   }  
 }

@@ -26,12 +26,7 @@
     display: flex;
     justify-content: space-evenly;
     border: none;
-  }
-
-  &__line-cell:last-child {
-    display: flex;
-    justify-content: space-evenly;
-    border: none;
+    width: 100%;
   }
  
 }

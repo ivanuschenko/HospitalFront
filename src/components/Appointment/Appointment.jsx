@@ -2,11 +2,11 @@ import { useState, useEffect, useContext } from 'react';
 import { Context } from 'src/index';
 import { useNavigate } from 'react-router-dom';
 import Header from 'src/components/Header/Header';
-import UnderHeader from 'src/components/underHeader/UnderHeader';
+import UnderHeader from 'src/components/UnderHeader/UnderHeader';
 import List from 'src/components/List/List';
 import Main from 'src/components/Main/Main';
-import './style.scss';
 import { tableList } from 'src/constants';
+import './style.scss';
 
 const Appointment = () => {  
   const {store} = useContext(Context);
@@ -38,7 +38,7 @@ const Appointment = () => {
       <Header>
         <h1>Прием</h1>
         <button 
-          className='header-children__button'
+          className='appointments-header__button'
           onClick={logOut}>
             Выход
         </button>        
