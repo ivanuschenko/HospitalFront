@@ -8,15 +8,18 @@
     align-self: center;
   } 
 }
-.header-img__logo{
+
+.header-img__logo {
   margin-left: 1rem;
 }
+
 .header-children {  
   width: 90%;
   display: flex;
   align-items: center;
   justify-content: space-between;  
 }
+
 .header-children__button {
   background-color: white;
   padding: 0.5rem 2.7rem;

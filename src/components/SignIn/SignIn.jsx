@@ -29,7 +29,7 @@ const SignIn = () => {
       setOpenSnack(true);
       setSnackText(res);
     } else {      
-      navigate('/appoinment');  
+      navigate('/appointment');  
     }            
   };
   

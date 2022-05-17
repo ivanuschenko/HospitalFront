@@ -16,3 +16,5 @@ export const fields = [
 export const listDoctors = ['Преображенский', 'Айболит', 'Терапевт'];
 
 export const url = 'http://localhost:8000';
+
+export const tableList = ['Имя', 'Доктор', 'Дата', 'Жалобы', ''];

@@ -6,7 +6,7 @@ export default class AppointmentService {
     return api.get('/allList');
   };
 
-  static createAppointment( name, doctor, date, complaint) {    
+  static createAppointment( name, doctor, date, complaint ) {    
     return api.post('/createAppointment', { name, doctor, date, complaint });
   };     
 }
