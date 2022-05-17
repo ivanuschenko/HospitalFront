@@ -3,16 +3,16 @@ import { Context } from 'src/index';
 import { listDoctors } from 'src/constants';
 import './style.scss';
 
-const UnderHeader = ({list, setList, inputValue, setInputValue}) => {
-  const {inputName, inputDoctor, inputData, inputAppoint} = inputValue;
+const UnderHeader = ({list, setList, appoint, setAppoint}) => {
+  const {inputName, inputDoctor, inputData, inputComplaint} = appoint;
   const {store} = useContext(Context);
 
   const handleChange = (key, value) => {    
-    setInputValue({...inputValue, [key]:value})
+    setAppoint({...appoint, [key]:value})
   };
 
   const disableButton = () => {       
-    if (inputName && inputDoctor && inputData && inputAppoint) {
+    if (inputName && inputDoctor && inputData && inputComplaint) {
       return false;
     } else {
       return true;
@@ -21,12 +21,12 @@ const UnderHeader = ({list, setList, inputValue, setInputValue}) => {
 
   const addAppoint = async (e) => {
     e.preventDefault();    
-    const response = await store.createAppointment(inputName, inputDoctor, inputData, inputAppoint);       
-    setInputValue({
+    const response = await store.createAppointment(inputName, inputDoctor, inputData, inputComplaint);       
+    setAppoint({
       inputName : '',
       inputDoctor: '',
       inputData : '',
-      inputAppoint : ''
+      inputComplaint : ''
     });
     setList(response.data);    
   }
@@ -71,8 +71,8 @@ const UnderHeader = ({list, setList, inputValue, setInputValue}) => {
         <input 
           type = 'text' 
           className = 'underheader-input'
-          value = {inputAppoint}
-          onChange={(e)=>handleChange('inputAppoint', e.target.value)}           
+          value = {inputComplaint}
+          onChange={(e)=>handleChange('inputComplaint', e.target.value)}           
         />
       </div>      
       <button className='underheader-button' disabled = {disableButton()} onClick={addAppoint}>Добавить</button>

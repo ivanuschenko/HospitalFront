@@ -13,38 +13,34 @@ const Appoinment = () => {
   const {store} = useContext(Context);
   const navigate = useNavigate();
   const [list, setList] = useState([]);
-  const [inputValue, setInputValue] = useState({
+  const [appoint, setAppoint] = useState({
     inputName : '',
     inputDoctor: '',
     inputData : '',
-    inputAppoint : ''
+    inputComplaint : ''
   });  
 
   useEffect( () => {
-    if (localStorage.getItem('token')) {     
-    } else {
-      navigate('/signIn');
-    }
-    const getAllAppointments = async () => {
-      const response = await store.getAllAppointments();       
-      setList(response.data);      
-    }  
-    getAllAppointments();    
-    }, []);
+    !localStorage.getItem('token') ? navigate('/signIn') : getAllAppointments();
+  }, []);
+
+  const getAllAppointments = async () => {
+    const response = await store.getAllAppointments();       
+    setList(response.data);      
+  };  
     
-  const logOut = (e) => {
-    e.preventDefault();    
+  const logOut = () => {      
     store.signOut();
     navigate('/signIn');   
-  }
+  };
   
   const editAppoint = (id) => {
     //logic for open popup for edit
-  }
+  };
 
   const deleteAppoint = (id) => {
     //logic for open popup for delete
-  }
+  };
 
   return(
     <div className='appointment'>           
@@ -54,9 +50,9 @@ const Appoinment = () => {
           className='header-children__button'
           onClick={logOut}>
             Выход
-        </button>
+        </button>        
       </Header>      
-      <UnderHeader list = {list} setList = {setList} inputValue = {inputValue} setInputValue = {setInputValue}/> 
+      <UnderHeader list = {list} setList = {setList} appoint = {appoint} setAppoint = {setAppoint}/> 
       <Main>
         <div className='appointments-body'>        
         <div className='appointments-table'>
