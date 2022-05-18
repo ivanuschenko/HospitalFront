@@ -12,7 +12,7 @@ const UnderHeader = ({list, setList, appointment, setAppointment}) => {
   };
 
   const disableButton = () => {
-    return (inputName && inputDoctor && inputData && inputComplaint) ? false : true;    
+    return (!inputName || inputDoctor || inputData || inputComplaint);    
   };
   
   const addAppointment = async (e) => {
@@ -24,8 +24,7 @@ const UnderHeader = ({list, setList, appointment, setAppointment}) => {
       inputDoctor: '',
       inputData : '',
       inputComplaint : ''
-    });  
-        
+    });        
   };
 
   return (
