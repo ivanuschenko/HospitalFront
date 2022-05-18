@@ -11,18 +11,14 @@ const UnderHeader = ({list, setList, appointment, setAppointment}) => {
     setAppointment({...appointment, [key]:value})
   };
 
-  const disableButton = () => {       
-    if (inputName && inputDoctor && inputData && inputComplaint) {
-      return false;
-    } else {
-      return true;
-    };
+  const disableButton = () => {
+    return (inputName && inputDoctor && inputData && inputComplaint) ? false : true;    
   };
-
+  
   const addAppointment = async (e) => {
     e.preventDefault();    
     const response = await store.createAppointment(inputName, inputDoctor, inputData, inputComplaint); 
-    if (Array.isArray(response.data)) setList(response.data)          
+    if (Array.isArray(response.data)) setList(response.data);          
     setAppointment({
       inputName : '',
       inputDoctor: '',
@@ -35,18 +31,20 @@ const UnderHeader = ({list, setList, appointment, setAppointment}) => {
   return (
     <form className="underheader-form">
       <div className='underheader-block'>
-        <label className='underheader-label'>Имя:</label>
+        <label htmlFor='underheader-input__name' className='underheader-label'>Имя:</label>
         <input 
           type = 'text' 
           className = 'underheader-input'
+          id='underheader-input__name'
           value = {inputName}
           onChange={(e) => handleChange('inputName', e.target.value)}
         />        
       </div>
       <div className='underheader-block'>
-        <label className='underheader-label'>Врач:</label>
+        <label htmlFor='underheader-input__doctor' className='underheader-label'>Врач:</label>
         <select 
           className='underheader-input'
+          id='underheader-input__doctor'
           onChange={(e) => handleChange('inputDoctor', e.target.value)}
           value = {inputDoctor}
         >
@@ -59,19 +57,21 @@ const UnderHeader = ({list, setList, appointment, setAppointment}) => {
         </select>       
       </div>
       <div className='underheader-block'>
-        <label className='underheader-label'>Дата:</label>
+        <label htmlFor='underheader-input__data' className='underheader-label'>Дата:</label>
         <input 
           type = 'date' 
           className = 'underheader-input'
+          id='underheader-input__data'
           value = {inputData}          
           onChange={(e) => handleChange('inputData',e.target.value)}
         /> 
       </div>
       <div className='underheader-block'>
-        <label className='underheader-label'>Жалобы:</label>
+        <label htmlFor='underheader-input__complaint' className='underheader-label'>Жалобы:</label>
         <input 
           type = 'text' 
           className = 'underheader-input'
+          id='underheader-input__complaint'
           value = {inputComplaint}
           onChange={(e) => handleChange('inputComplaint', e.target.value)}           
         />

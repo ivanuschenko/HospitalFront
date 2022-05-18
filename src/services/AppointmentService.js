@@ -1,4 +1,4 @@
-import api from '../http/index';
+import api from 'src/http/index';
   
 export default class AppointmentService {
 
