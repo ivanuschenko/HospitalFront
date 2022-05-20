@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
+import { Context } from 'src/index';
 import SignIn from 'src/components/SignIn/SignIn';
 import SignUp from 'src/components/SignUp/SignUp';
 import Appointment from 'src/components/Appointment/Appointment';
-import { Context } from 'src/index';
 import './app.scss';
 
 const App = () => {

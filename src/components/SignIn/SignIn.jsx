@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from 'src/index';
 import Header from 'src/components/Header/Header';
 import Main from 'src/components/Main/Main';
 import SimpleSnackbar from 'src/components/Snack/Snack';
-import { Context } from 'src/index';
 import BodyImg from 'src/img/hospital.svg';
 import './style.scss';
 

@@ -10,10 +10,8 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
   const handleChange = (key, value) => {    
     setAppointment({...appointment, [key]:value})
   };
-
-  const disableButton = () => {
-    return (!inputName || !inputDoctor || !inputData || !inputComplaint);    
-  };
+ 
+  const disabledButton = !inputName || !inputDoctor || !inputData || !inputComplaint;
   
   const addAppointment = async (e) => {
     e.preventDefault();    
@@ -32,10 +30,10 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
       <div className='listadder-block'>
         <label htmlFor='listadder-input__name' className='listadder-block_label'>Имя:</label>
         <input 
-          type = 'text' 
-          className = 'listadder-block_input'
+          type='text' 
+          className='listadder-block_input'
           id='listadder-input__name'
-          value = {inputName}
+          value={inputName}
           onChange={(e) => handleChange('inputName', e.target.value)}
         />        
       </div>
@@ -50,7 +48,7 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
         <option></option>
           {
             listDoctors.map((doctor, index) =>             
-              <option value = {doctor} key = {`doctor-${index}`} >{doctor}</option>                            
+              <option value={doctor} key={`doctor-${index}`} >{doctor}</option>                            
             )
           }
         </select>       
@@ -58,8 +56,8 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
       <div className='listadder-block'>
         <label htmlFor='listadder-input__data' className='listadder-block_label'>Дата:</label>
         <input 
-          type = 'date' 
-          className = 'listadder-block_input'
+          type='date' 
+          className='listadder-block_input'
           id='listadder-input__data'
           value = {inputData}          
           onChange={(e) => handleChange('inputData',e.target.value)}
@@ -68,10 +66,10 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
       <div className='listadder-block'>
         <label htmlFor='listadder-input__complaint' className='listadder-block_label'>Жалобы:</label>
         <input 
-          type = 'text' 
+          type='text' 
           className = 'listadder-block_input'
           id='listadder-input__complaint'
-          value = {inputComplaint}
+          value={inputComplaint}
           onChange={(e) => handleChange('inputComplaint', e.target.value)}           
         />
       </div>
@@ -80,8 +78,8 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
           type="submit" 
           value="Добавить" 
           className='listadder-block_button' 
-          disabled = {disableButton()} 
-          onClick = {addAppointment} 
+          disabled={disabledButton} 
+          onClick={addAppointment} 
         />
       </div>
     </form>
