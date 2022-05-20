@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { url } from 'src/constants';
+import { url } from 'src/constants';;
 
 const api = axios.create({
   withCredentials: true,
@@ -23,7 +23,7 @@ api.interceptors.response.use((config) => {
           localStorage.setItem('token', response.data.accessToken);
           return api.request(originalRequest);
       } 
-      catch (e) {
+      catch (e) {        
         alert(e, 'Не авторизован!');
       }
     } else {

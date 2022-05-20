@@ -79,20 +79,7 @@ export default class Store {
       this.setLoading(false);
     }
   }
-
-  static refresh = async () => {
-    try {
-      const response = await axios.get(`${url}/api/refresh`, {
-        withCredentials: true,
-      });
-      localStorage.setItem('token', response.data.accessToken);
-    } catch (e) {
-      this.setUser({});
-      this.setIsAuth(false)     
-      alert('Не авторизован');      
-    }
-  }
-
+  
   signOut = async () => {
     try {
       const response = await authService.signOut();

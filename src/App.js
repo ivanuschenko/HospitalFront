@@ -7,7 +7,6 @@ import Appointment from 'src/components/Appointment/Appointment';
 import { Context } from 'src/index';
 import './app.scss';
 
-
 const App = () => {
   const { store } = useContext(Context);
 
