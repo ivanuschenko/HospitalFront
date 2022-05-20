@@ -1,16 +1,14 @@
 import { useState, useEffect, useContext } from 'react';
-import { Context } from 'src/index';
-import { useNavigate } from 'react-router-dom';
 import Header from 'src/components/Header/Header';
-import UnderHeader from 'src/components/UnderHeader/UnderHeader';
+import ListAdder from 'src/components/ListAdder/ListAdder';
 import List from 'src/components/List/List';
 import Main from 'src/components/Main/Main';
+import { Context } from 'src/index';
 import { tableList } from 'src/constants';
 import './style.scss';
 
 const Appointment = () => {  
-  const {store} = useContext(Context);
-  const navigate = useNavigate();
+  const {store} = useContext(Context);  
   const [list, setList] = useState([]);
   const [appointment, setAppointment] = useState({
     inputName : '',
@@ -19,18 +17,13 @@ const Appointment = () => {
     inputComplaint : ''
   });  
 
-  useEffect( () => {
-    !localStorage.getItem('token') ? navigate('/signIn') : getAllAppointments();
+  useEffect( () => {    
+    getAllAppointments();     
   }, []);
 
   const getAllAppointments = async () => {
     const response = await store.getAllAppointments();       
-    setList(response.data);      
-  };  
-    
-  const logOut = () => {      
-    store.signOut();
-    navigate('/signIn');   
+    setList(response.data);          
   };
 
   return (
@@ -38,30 +31,28 @@ const Appointment = () => {
       <Header>
         <h1>Прием</h1>
         <button 
-          className='appointments-header__button'
-          onClick={logOut}>
+          className='appointment-header__button'
+          onClick={store.signOut}>
             Выход
         </button>        
       </Header>      
-      <UnderHeader list = {list} setList = {setList} appointment = {appointment} setAppointment = {setAppointment}/> 
-      <Main>
-        <div className='appointments-body'>        
-        <div className='appointments-table'>
-          <table className='appointments-table__head'> 
+      <ListAdder list={list} setList={setList} appointment={appointment} setAppointment={setAppointment}/> 
+      <Main>               
+        <div className='appointment-table'>
+          <table className='appointment-table__head'> 
             <tbody>
               <tr>
                 {
                   tableList
-                  .map((th, id) => 
-                    <th className='appointments-table__head-cell' key={`appointments-table__head-cell-${id}`}>{th}</th>
+                  .map(th =>
+                    <th className='appointment-table__head-cell' key={`appointment-table__head-cell-${th.id}`}>{th.field}</th>                                       
                   )
                 }               
               </tr>
             </tbody> 
           </table>          
           <List list = {list}/>
-        </div> 
-        </div>
+        </div>         
       </Main>     
     </div>
   )

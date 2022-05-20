@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Context } from 'src/index';
+import { Link } from 'react-router-dom';
 import Header from 'src/components/Header/Header';
 import Main from 'src/components/Main/Main';
 import SimpleSnackbar from 'src/components/Snack/Snack';
-import './style.scss';
+import { Context } from 'src/index';
 import BodyImg from 'src/img/hospital.svg';
+import './style.scss';
 
 const SignIn = () => {  
   const [newUser, setNewUser] = useState({
@@ -14,7 +14,6 @@ const SignIn = () => {
   });
   const [openSnack, setOpenSnack] = useState(false);
   const [snackText, setSnackText] = useState(''); 
-  const navigate = useNavigate();
   const {store} = useContext(Context);
 
   const authorised = async (e) => {
@@ -28,9 +27,7 @@ const SignIn = () => {
     if (res) {
       setOpenSnack(true);
       setSnackText(res);
-    } else {      
-      navigate('/appointment');  
-    }            
+    }           
   };
   
   const handleChange = (key, value) => {
@@ -48,7 +45,7 @@ const SignIn = () => {
         <img src={BodyImg} alt='hospitalLogo' />
         <div className='signin-body'>
           <h1>Войти в систему</h1>
-          <form className='signin-form' onSubmit={authorised}>          
+          <form className='signin-form' >          
             <div className='signin-block'>
               <label htmlFor='signin-block__input-name'>Логин:</label>
               <input              
@@ -68,7 +65,7 @@ const SignIn = () => {
               />         
             </div>
             <div className='signin-block'>
-              <button className='signin-block__button-login'>Войти</button>
+              <button className='signin-block__button-login' onClick={authorised}>Войти</button>
               <Link className='signin-block__link-registrate' to='/signUp'>
                 Зарегистрироваться
               </Link>

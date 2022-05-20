@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { makeAutoObservable } from 'mobx';
 import authService from 'src/services/AuthServices';
 import appointmentService from 'src/services/AppointmentService';
 import { url } from 'src/constants';
@@ -6,11 +7,27 @@ import { url } from 'src/constants';
 // this folder needs for interaction with global storage(context)
 
 export default class Store {
-  user = {};  
-  isLoading = false;
+  /*
+  use MobX for controll value isAuth in App.js. Value "isAuth" check user's authorisation. 
+  */
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  user = {};
+  isAuth = false;  
+  isLoading = false; 
 
   setUser(user) {
     this.user = user;
+  }
+
+  setIsAuth(isAuth) {
+    this.isAuth = isAuth;  
+  }
+
+  getIsAuth() {    
+    return this.isAuth;    
   }
 
   setLoading(boolean) {
@@ -26,6 +43,7 @@ export default class Store {
     try {      
       const response = await authService.registration(name, password);          
       localStorage.setItem('token', response.data.accessToken);
+      this.setIsAuth(true);
       this.setUser(response.data.user);         
     } catch (e) {
       return e.response.data.message;
@@ -34,9 +52,10 @@ export default class Store {
 
   signIn = async (name, password) => {
     try {
-      const response = await authService.signIn(name, password);      
+      const response = await authService.signIn(name, password);            
       localStorage.setItem('token', response.data.accessToken);
       this.setUser(response.data.user);
+      this.setIsAuth(true)      
     } catch (e) {
 
       /* This 'e.response.data.message' return error which generated on backend in static method in ApiError class which extend class 'Error'.
@@ -50,8 +69,9 @@ export default class Store {
   checkAuth = async () => {
     this.setLoading(true);
     try {
-      const response = await axios.get(`${url}/refresh`, {withCredentials: true});          
-      localStorage.setItem('token', response.data.accessToken);      
+      const response = await axios.get(`${url}/api/refresh`, {withCredentials: true});          
+      localStorage.setItem('token', response.data.accessToken);
+      this.setIsAuth(true);        
       this.setUser(response.data.user);
     } catch (e) {
       alert (e.response.data.message);
@@ -68,6 +88,7 @@ export default class Store {
       localStorage.setItem('token', response.data.accessToken);
     } catch (e) {
       this.setUser({});
+      this.setIsAuth(false)     
       alert('Не авторизован');      
     }
   }
@@ -76,7 +97,8 @@ export default class Store {
     try {
       const response = await authService.signOut();
       localStorage.removeItem('token');
-      this.setUser({});            
+      this.setUser({})
+      this.setIsAuth(false);            
     } catch (e) {
       alert (e.response.data.message) ;
     }

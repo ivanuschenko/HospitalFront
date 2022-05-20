@@ -1,21 +1,14 @@
 .appointment {
   width: 100vw;
   margin: 0 auto;
-}
 
-.appointments-header__button {
-  background-color: white;
-  padding: 0.5rem 2.7rem;
-  font-size: 1.5rem;
-}
-
-.appointments-body {
-  width: 100%;
-  display: flex;
-  align-items: center;    
-  flex-direction: column;
-  
-  .appointments-table {
+  &-header__button {
+    background-color: white;
+    padding: 0.5rem 2.7rem;
+    font-size: 1.5rem;
+  }  
+    
+  &-table {
     width: 90%;
     display: flex;
     align-items: center;    
@@ -25,7 +18,7 @@
     border-collapse: collapse;
     align-items: center;
     border: 0.1rem solid black;    
-   
+  
     &__head {
       width: 100%;      
       background-color: #C4C4C4;
@@ -48,5 +41,5 @@
       display: flex;
       justify-content: space-around;
     }
-  }  
+  }
 }

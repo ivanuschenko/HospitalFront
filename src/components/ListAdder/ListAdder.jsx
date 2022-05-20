@@ -3,7 +3,7 @@ import { Context } from 'src/index';
 import { listDoctors } from 'src/constants';
 import './style.scss';
 
-const UnderHeader = ({list, setList, appointment, setAppointment}) => {
+const ListAdder = ({list, setList, appointment, setAppointment}) => {
   const {inputName, inputDoctor, inputData, inputComplaint} = appointment;
   const {store} = useContext(Context);
 
@@ -18,7 +18,7 @@ const UnderHeader = ({list, setList, appointment, setAppointment}) => {
   const addAppointment = async (e) => {
     e.preventDefault();    
     const response = await store.createAppointment(inputName, inputDoctor, inputData, inputComplaint); 
-    if (Array.isArray(response.data)) setList(response.data);          
+    if (response.data) setList(response.data);          
     setAppointment({
       inputName : '',
       inputDoctor: '',
@@ -28,22 +28,22 @@ const UnderHeader = ({list, setList, appointment, setAppointment}) => {
   };
 
   return (
-    <form className="underheader-form">
-      <div className='underheader-block'>
-        <label htmlFor='underheader-input__name' className='underheader-label'>Имя:</label>
+    <form className="listadder">
+      <div className='listadder-block'>
+        <label htmlFor='listadder-input__name' className='listadder-block_label'>Имя:</label>
         <input 
           type = 'text' 
-          className = 'underheader-input'
-          id='underheader-input__name'
+          className = 'listadder-block_input'
+          id='listadder-input__name'
           value = {inputName}
           onChange={(e) => handleChange('inputName', e.target.value)}
         />        
       </div>
-      <div className='underheader-block'>
-        <label htmlFor='underheader-input__doctor' className='underheader-label'>Врач:</label>
+      <div className='listadder-block'>
+        <label htmlFor='listadder-input__doctor' className='listadder-block_label'>Врач:</label>
         <select 
-          className='underheader-input'
-          id='underheader-input__doctor'
+          className='listadder-block_input'
+          id='listadder-input__doctor'
           onChange={(e) => handleChange('inputDoctor', e.target.value)}
           value = {inputDoctor}
         >
@@ -55,29 +55,37 @@ const UnderHeader = ({list, setList, appointment, setAppointment}) => {
           }
         </select>       
       </div>
-      <div className='underheader-block'>
-        <label htmlFor='underheader-input__data' className='underheader-label'>Дата:</label>
+      <div className='listadder-block'>
+        <label htmlFor='listadder-input__data' className='listadder-block_label'>Дата:</label>
         <input 
           type = 'date' 
-          className = 'underheader-input'
-          id='underheader-input__data'
+          className = 'listadder-block_input'
+          id='listadder-input__data'
           value = {inputData}          
           onChange={(e) => handleChange('inputData',e.target.value)}
         /> 
       </div>
-      <div className='underheader-block'>
-        <label htmlFor='underheader-input__complaint' className='underheader-label'>Жалобы:</label>
+      <div className='listadder-block'>
+        <label htmlFor='listadder-input__complaint' className='listadder-block_label'>Жалобы:</label>
         <input 
           type = 'text' 
-          className = 'underheader-input'
-          id='underheader-input__complaint'
+          className = 'listadder-block_input'
+          id='listadder-input__complaint'
           value = {inputComplaint}
           onChange={(e) => handleChange('inputComplaint', e.target.value)}           
         />
-      </div>      
-      <button className='underheader-button' disabled = {disableButton()} onClick = {addAppointment}>Добавить</button>
+      </div>
+      <div className='listadder-block'>
+        <input 
+          type="submit" 
+          value="Добавить" 
+          className='listadder-block_button' 
+          disabled = {disableButton()} 
+          onClick = {addAppointment} 
+        />
+      </div>
     </form>
   )
 }
 
-export default UnderHeader;
+export default ListAdder;

@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Context } from 'src/index';
 import Header from 'src/components/Header/Header';
 import Main from 'src/components/Main/Main';
 import SimpleSnackbar from 'src/components/Snack/Snack';
 import { checkValidationLogin , checkValidationPassword } from 'src/helper/helperValidate';
-import './style.scss';
+import { Context } from 'src/index';
 import BodyImg from 'src/img/hospital.svg';
+import './style.scss';
 
 const SignUp = () => {  
   const [newUser, setNewUser] = useState({
@@ -15,8 +15,7 @@ const SignUp = () => {
     confirmPassword: '',
   });
   const [snackText, setSnackText] = useState('');
-  const [openSnack, setOpenSnack] = useState(false);  
-  const navigate = useNavigate();
+  const [openSnack, setOpenSnack] = useState(false);
   const {store} = useContext(Context); 
 
   const createNewPatient = async (e) => {       
@@ -43,9 +42,7 @@ const SignUp = () => {
         
     if (res) {
       showResultValidation(res);        
-    } else {             
-      navigate('/signIn');  
-    }          
+    }         
   }
 
   const showResultValidation = (message) => {
