@@ -7,9 +7,11 @@ import { url } from 'src/constants';
 // this folder needs for interaction with global storage(context)
 
 export default class Store {
+
   /*
   use MobX for controll value isAuth in App.js. Value "isAuth" check user's authorisation. 
   */
+ 
   constructor() {
     makeAutoObservable(this);
   }

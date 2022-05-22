@@ -32,7 +32,8 @@ const Appointment = () => {
         <h1>Прием</h1>
         <button 
           className='appointment-header__button'
-          onClick={store.signOut}>
+          onClick={store.signOut}
+        >
             Выход
         </button>        
       </Header>      
@@ -40,7 +41,8 @@ const Appointment = () => {
         list={list} 
         setList={setList} 
         appointment={appointment} 
-        setAppointment={setAppointment}/> 
+        setAppointment={setAppointment}
+        /> 
       <Main>               
         <div className='appointment-table'>
           <table className='appointment-table__head'> 
@@ -54,7 +56,7 @@ const Appointment = () => {
               </tr>
             </tbody> 
           </table>          
-          <List list = {list}/>
+          <List list={list} />
         </div>         
       </Main>     
     </div>

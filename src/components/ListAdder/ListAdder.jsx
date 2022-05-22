@@ -43,7 +43,7 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
           className='listadder-block_input'
           id='listadder-input__doctor'
           onChange={(e) => handleChange('inputDoctor', e.target.value)}
-          value = {inputDoctor}
+          value={inputDoctor}
         >
         <option></option>
           {
@@ -59,7 +59,7 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
           type='date' 
           className='listadder-block_input'
           id='listadder-input__data'
-          value = {inputData}          
+          value={inputData}          
           onChange={(e) => handleChange('inputData',e.target.value)}
         /> 
       </div>
@@ -67,7 +67,7 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
         <label htmlFor='listadder-input__complaint' className='listadder-block_label'>Жалобы:</label>
         <input 
           type='text' 
-          className = 'listadder-block_input'
+          className='listadder-block_input'
           id='listadder-input__complaint'
           value={inputComplaint}
           onChange={(e) => handleChange('inputComplaint', e.target.value)}           

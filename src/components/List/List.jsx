@@ -24,8 +24,8 @@ const List = ({list}) => {
               <td className='list-table__line-cell'><Moment format='DD.MM.YYYY'>{date}</Moment></td>
               <td className='list-table__line-cell'>{complaint}</td>
               <td className='list-table__line-cell'>
-                <img src = {Edit} alt='Edit' onClick={() => editAppointment(_id)} />
-                <img src = {Delete} alt='Delete' onClick={() => deleteAppointment(_id)} />
+                <img src={Edit} alt='Edit' onClick={() => editAppointment(_id)} />
+                <img src={Delete} alt='Delete' onClick={() => deleteAppointment(_id)} />
               </td>
             </tr>                   
           )
