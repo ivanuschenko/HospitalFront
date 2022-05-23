@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { url } from 'src/constants';;
+import { url } from 'src/constants';
 
 const api = axios.create({
   withCredentials: true,
@@ -31,6 +31,5 @@ api.interceptors.response.use((config) => {
     }
   } 
 );
-
 
 export default api;

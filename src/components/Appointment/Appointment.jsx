@@ -8,7 +8,7 @@ import { tableList } from 'src/constants';
 import './style.scss';
 
 const Appointment = () => {  
-  const {store} = useContext(Context);  
+  const { store } = useContext(Context);  
   const [list, setList] = useState([]);
   const [appointment, setAppointment] = useState({
     inputName : '',
@@ -33,8 +33,8 @@ const Appointment = () => {
         <button 
           className='appointment-header__button'
           onClick={store.signOut}
-      >
-            Выход
+        >
+          Выход
         </button>        
       </Header>      
       <ListAdder 
@@ -42,7 +42,7 @@ const Appointment = () => {
         setList={setList} 
         appointment={appointment} 
         setAppointment={setAppointment}
-        /> 
+      /> 
       <Main>               
         <div className='appointment-table'>
           <table className='appointment-table__head'> 

@@ -5,7 +5,7 @@ import './style.scss';
 
 const ListAdder = ({list, setList, appointment, setAppointment}) => {
   const {inputName, inputDoctor, inputData, inputComplaint} = appointment;
-  const {store} = useContext(Context);
+  const { store } = useContext(Context);
 
   const handleChange = (key, value) => {    
     setAppointment({...appointment, [key]:value})
@@ -18,7 +18,7 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
     const response = await store.createAppointment(inputName, inputDoctor, inputData, inputComplaint); 
     if (response.data) {
       setList(response.data);
-    }                      
+    };                      
     setAppointment({
       inputName : '',
       inputDoctor: '',
@@ -50,7 +50,7 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
         <option></option>
           {
             listDoctors.map((doctor, index) =>             
-              <option value={doctor} key={`doctor-${index}`} >{doctor}</option>                            
+              <option value={doctor} key={`doctor-${index}`}>{doctor}</option>                            
             )
           }
         </select>       

@@ -16,7 +16,7 @@ const SignUp = () => {
   });
   const [snackText, setSnackText] = useState('');
   const [openSnack, setOpenSnack] = useState(false);
-  const {store} = useContext(Context); 
+  const { store } = useContext(Context); 
 
   const createNewPatient = async (e) => {       
     e.preventDefault();         

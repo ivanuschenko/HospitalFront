@@ -10,8 +10,7 @@ export default class Store {
 
   /*
   use MobX for controll value isAuth in App.js. Value "isAuth" check user's authorisation. 
-  */
- 
+  */ 
   constructor() {
     makeAutoObservable(this);
   }
@@ -63,7 +62,6 @@ export default class Store {
       /* This 'e.response.data.message' return error which generated on backend in static method in ApiError class which extend class 'Error'.
       For example then we trying register user with login which already exist in database, we'll got error that 'this user with this name already exist'   
       */
-
       return e.response.data.message;
     }
   }   

@@ -14,7 +14,7 @@ const SignIn = () => {
   });
   const [openSnack, setOpenSnack] = useState(false);
   const [snackText, setSnackText] = useState(''); 
-  const {store} = useContext(Context);
+  const { store } = useContext(Context);
 
   const authorised = async (e) => {
     e.preventDefault();     
