@@ -33,7 +33,7 @@ const Appointment = () => {
         <button 
           className='appointment-header__button'
           onClick={store.signOut}
-        >
+      >
             Выход
         </button>        
       </Header>      

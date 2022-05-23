@@ -16,7 +16,9 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
   const addAppointment = async (e) => {
     e.preventDefault();    
     const response = await store.createAppointment(inputName, inputDoctor, inputData, inputComplaint); 
-    if (response.data) setList(response.data);          
+    if (response.data) {
+      setList(response.data);
+    }                      
     setAppointment({
       inputName : '',
       inputDoctor: '',
