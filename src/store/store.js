@@ -1,19 +1,12 @@
 import axios from 'axios';
-import { makeAutoObservable } from 'mobx';
 import authService from 'src/services/AuthServices';
 import appointmentService from 'src/services/AppointmentService';
+import pubSub from 'src/helper/pubSub'
 import { url } from 'src/constants';
 
 // this folder needs for interaction with global storage(context)
 
 export default class Store {
-
-  /*
-  use MobX for controll value isAuth in App.js. Value "isAuth" check user's authorisation. 
-  */ 
-  constructor() {
-    makeAutoObservable(this);
-  }
 
   user = {};
   isAuth = false;  
@@ -24,12 +17,9 @@ export default class Store {
   }
 
   setIsAuth(isAuth) {
-    this.isAuth = isAuth;  
-  }
-
-  getIsAuth() {    
-    return this.isAuth;    
-  }
+    this.isAuth = isAuth;
+    pubSub.dispatch('auth', this.isAuth);  
+  } 
 
   setLoading(boolean) {
     this.isLoading = boolean;

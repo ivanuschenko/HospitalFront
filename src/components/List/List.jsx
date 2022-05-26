@@ -6,7 +6,7 @@ import './style.scss';
 const List = ({list}) => {
 
   const editAppointment = (id) => {
-    //logic for open popup for edit
+    //logic for open popup for edit    
   };
 
   const deleteAppointment = (id) => {
@@ -23,9 +23,9 @@ const List = ({list}) => {
               <td className='list-table__line-cell'>{doctor}</td>
               <td className='list-table__line-cell'><Moment format='DD.MM.YYYY'>{date}</Moment></td>
               <td className='list-table__line-cell'>{complaint}</td>
-              <td className='list-table__line-cell'>
-                <img src={Edit} alt='Edit' onClick={() => editAppointment(_id)} />
-                <img src={Delete} alt='Delete' onClick={() => deleteAppointment(_id)} />
+              <td className='list-table__line-cell'>                                
+                <input type='image' src={Edit} onClick={() => editAppointment(_id)} alt='Edit' />
+                <input type='image' src={Delete} onClick={() => deleteAppointment(_id)} alt='Delete' />                
               </td>
             </tr>                   
           )

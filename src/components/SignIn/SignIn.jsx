@@ -16,8 +16,7 @@ const SignIn = () => {
   const [snackText, setSnackText] = useState(''); 
   const { store } = useContext(Context);
 
-  const authorised = async (e) => {
-    e.preventDefault();     
+  const authorised = async () => {         
     const {
       name,
       password      
@@ -65,7 +64,7 @@ const SignIn = () => {
               />         
             </div>
             <div className='signin-block'>
-              <button className='signin-block__button-login' onClick={authorised}>Войти</button>
+              <button type='button' className='signin-block__button-login' onClick={authorised}>Войти</button>
               <Link className='signin-block__link-registrate' to='/signUp'>
                 Зарегистрироваться
               </Link>

@@ -18,8 +18,7 @@ const SignUp = () => {
   const [openSnack, setOpenSnack] = useState(false);
   const { store } = useContext(Context); 
 
-  const createNewPatient = async (e) => {       
-    e.preventDefault();         
+  const createNewPatient = async () => {
     const {
       name,
       password,
@@ -97,7 +96,7 @@ const SignUp = () => {
               />              
             </div>
             <div className='signup-block'>
-              <button className='signup-block__button-registrate'>Зарегистрироваться</button>
+              <button type='button' className='signup-block__button-registrate'>Зарегистрироваться</button>
               <Link className='signup-block__link-login' to='/signIn'>
                 Войти
               </Link> 

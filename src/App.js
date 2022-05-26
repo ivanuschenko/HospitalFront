@@ -1,42 +1,41 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { observer } from 'mobx-react-lite';
 import { Context } from 'src/index';
 import SignIn from 'src/components/SignIn/SignIn';
 import SignUp from 'src/components/SignUp/SignUp';
 import Appointment from 'src/components/Appointment/Appointment';
+import pubSub from 'src/helper/pubSub'
 import './app.scss';
 
 const App = () => {
   const { store } = useContext(Context);
+  const [auth, setAuth] = useState(store.isAuth)
 
   useEffect(() => {
     if (localStorage.getItem('token')) {      
       store.checkAuth();
+      pubSub.on('auth', () => {
+        setAuth(store.isAuth)
+      })        
+      pubSub.remove('auth');
     }
-  }, []);
-
-  if (!store.getIsAuth()) {       
+   }, []); 
+   
+  if (!auth) {       
     return (
       <Routes>        
         <Route path='/signUp' element={<SignUp/>} />
-        <Route path='/signIn' element={<SignIn/>} /> 
-        <Route path='/appointment' element={<Navigate to='/signIn' />} />       
-        <Route path='/*' element={<Navigate to='/signIn' />} />               
+        <Route path='/signIn' element={<SignIn/>} />            
+        <Route path='*' element={<Navigate to='/signIn' />} />               
       </Routes>      
     );
-  }
-  
-  if (store.getIsAuth()) {     
-    return (
-      <div>
-        <Routes>
-          <Route path='/appointment' element={<Appointment/>} />
-          <Route path='*' element={<Navigate to='/appointment' />} />
-        </Routes>
-      </div>
-    );
-  }
+  } 
+  return (      
+    <Routes>
+      <Route path='/appointment' element={<Appointment/>} />
+      <Route path='*' element={<Navigate to='/appointment' />} />
+    </Routes>      
+  );  
 }
 
-export default observer(App);
+export default App;
