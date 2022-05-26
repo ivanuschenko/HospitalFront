@@ -64,7 +64,7 @@ const SignUp = () => {
         <img src={BodyImg} alt='hospitalLogo'/>
         <div className='signup-body'>
           <h1>Регистрация</h1>
-          <form className='signup-form' onSubmit={createNewPatient}>          
+          <form className='signup-form'>          
             <div className='signup-block'>
               <label htmlFor='signup-block__input-login'>Логин:</label>
               <input 
@@ -96,7 +96,7 @@ const SignUp = () => {
               />              
             </div>
             <div className='signup-block'>
-              <button type='button' className='signup-block__button-registrate'>Зарегистрироваться</button>
+              <button type='button' className='signup-block__button-registrate' onClick={createNewPatient}>Зарегистрироваться</button>
               <Link className='signup-block__link-login' to='/signIn'>
                 Войти
               </Link> 
