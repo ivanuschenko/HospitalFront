@@ -4,22 +4,18 @@ import { Context } from 'src/index';
 import SignIn from 'src/components/SignIn/SignIn';
 import SignUp from 'src/components/SignUp/SignUp';
 import Appointment from 'src/components/Appointment/Appointment';
-import pubSub from 'src/helper/pubSub'
 import './app.scss';
 
 const App = () => {
   const { store } = useContext(Context);
   const [auth, setAuth] = useState(store.isAuth)
 
-  useEffect(() => {
-    if (localStorage.getItem('token')) {      
+  useEffect(() => {        
       store.checkAuth();
-      pubSub.on('auth', () => {
+      store.subscribe('auth', () => {
         setAuth(store.isAuth)
-      })        
-      pubSub.remove('auth');
-    }
-   }, []); 
+      }) 
+  }, []); 
    
   if (!auth) {       
     return (

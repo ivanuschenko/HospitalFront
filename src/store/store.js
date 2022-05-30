@@ -1,7 +1,6 @@
 import axios from 'axios';
 import authService from 'src/services/AuthServices';
 import appointmentService from 'src/services/AppointmentService';
-import pubSub from 'src/helper/pubSub'
 import { url } from 'src/constants';
 
 // this folder needs for interaction with global storage(context)
@@ -10,7 +9,8 @@ export default class Store {
 
   user = {};
   isAuth = false;  
-  isLoading = false; 
+  isLoading = false;
+  subscribers = {}; 
 
   setUser(user) {
     this.user = user;
@@ -18,7 +18,7 @@ export default class Store {
 
   setIsAuth(isAuth) {
     this.isAuth = isAuth;
-    pubSub.dispatch('auth', this.isAuth);  
+    this.publish('auth', this.isAuth);   
   } 
 
   setLoading(boolean) {
@@ -57,16 +57,20 @@ export default class Store {
   }   
 
   checkAuth = async () => {
-    this.setLoading(true);
-    try {
-      const response = await axios.get(`${url}/api/refresh`, {withCredentials: true});          
-      localStorage.setItem('token', response.data.accessToken);
-      this.setIsAuth(true);        
-      this.setUser(response.data.user);
-    } catch (e) {
-      alert (e.response.data.message);
-    } finally {
-      this.setLoading(false);
+    if (localStorage.getItem('token')) {
+      try {
+        const response = await axios.get(`${url}/api/refresh`, {withCredentials: true});          
+        localStorage.setItem('token', response.data.accessToken);
+        this.setIsAuth(true);        
+        this.setUser(response.data.user);
+      } catch (e) {
+        alert (e.response.data.message);
+      } finally {
+        this.setLoading(false);
+      }
+    }
+    else {
+      this.setIsAuth(false)
     }
   }
   
@@ -97,5 +101,18 @@ export default class Store {
     } catch (e) {
       alert('Ошибка createAppointment ' + e.name + ":" + e.message);
     } 
+  }
+
+  subscribe = (event, callback) => {
+    if (!this.subscribers[event]) {
+      this.subscribers[event] = [];
+    }    
+    this.subscribers[event].push(callback);
+  }
+
+  publish = (event, data) => {
+    if (!this.subscribers[event]) return;
+    this.subscribers[event].forEach(subscriberCallback =>
+      subscriberCallback(data));
   }
 }
