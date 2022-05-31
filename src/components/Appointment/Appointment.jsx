@@ -56,7 +56,7 @@ const Appointment = () => {
               </tr>
             </tbody> 
           </table>          
-          <List list={list} />
+          <List list={list} setList={setList}/>
         </div>         
       </Main>     
     </div>

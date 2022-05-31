@@ -103,6 +103,23 @@ export default class Store {
     } 
   }
 
+  updateApointment = async (id, patient, doctor, date, complaint) => {    
+    try {      
+      const response = await appointmentService.updateAppointment(id, patient, doctor, date, complaint);
+      return response;
+    } catch (e) {
+      alert('Ошибка updateApointment ' + e.name + ":" + e.message);;
+    }
+  } 
+
+  deleteApointment = async (id) => {    
+    try {      
+      await appointmentService.deleteAppointment(id);      
+    } catch (e) {
+      alert('Ошибка deleteApointment ' + e.name + ":" + e.message);;
+    }
+  }
+
   subscribe = (callback) => {
     if (!this.events) {
       this.events = [];

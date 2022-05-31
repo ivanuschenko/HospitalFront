@@ -1,17 +1,26 @@
+import { useState } from 'react';
+import ModaleDelete from 'src/components/modal/ModalDelete/ModalDelete';
+import ModalEdit from 'src/components/modal/ModalEdit/ModalEdit';
 import Moment from 'react-moment';
 import Delete from 'src/img/bin.svg';
 import Edit from 'src/img/edit.svg';
 import './style.scss';
 
-const List = ({list}) => {
+const List = ({list, setList}) => {
 
-  const editAppointment = (id) => {
-    //logic for open popup for edit    
-  };
+  const [modalDelActive, setModalDelActive ] = useState(false);
+  const [modalEditActive, setModalEditActive ] = useState(false);
+  const [id, setId] = useState('')
 
   const deleteAppointment = (id) => {
-    //logic for open popup for delete
-  };
+    setId(id);
+    setModalDelActive(true);
+  }   
+
+  const editAppointment = (id) => {    
+    setId(id);    
+    setModalEditActive(true);    
+  } 
 
   return (
     <table className='list-table__list'>
@@ -31,8 +40,22 @@ const List = ({list}) => {
           )
         }
       </tbody>
-    </table>
+      {modalDelActive && <ModaleDelete
+        list = {list} 
+        active={modalDelActive} 
+        setActive= {setModalDelActive} 
+        id = {id} 
+        setList = {setList}
+      />}
+      {modalEditActive && <ModalEdit 
+        modalEditActive={modalEditActive} 
+        setEditActive= {setModalEditActive}               
+        id = {id}
+        list = {list}
+        setList = {setList}                                  
+      />} 
+    </table>    
   )
 }
 
-export default List;
+export default List; 
