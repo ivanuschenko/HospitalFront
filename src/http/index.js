@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { url } from 'src/constants';
-import Store from 'src/store/store';
 
 const api = axios.create({
   withCredentials: true,
@@ -14,17 +13,23 @@ api.interceptors.request.use((config)=> {
 
 api.interceptors.response.use((config) => {
   return config;
-  }, async (error) => {
-    const originalRequest = error.config;   
+}, 
+  async (error) => {
+    const originalRequest = error.config;    
     if (error.response.status === 401 && originalRequest && !originalRequest._isRetry) {
       originalRequest._isRetry = true;
-      await Store.refresh();
-      return api.request(originalRequest);
-    } else { 
-      throw error;  //throw statement throws a user-defined exception
+      try {
+        const response = await axios.get(`${url}/api/refresh`, { withCredentials: true });          
+        localStorage.setItem('token', response.data.accessToken);
+        return api.request(originalRequest);
+      } 
+      catch (e) {        
+        alert(e, 'Не авторизован!');
+      }
+    } else {
+      throw error;
     }
   } 
 );
-
 
 export default api;

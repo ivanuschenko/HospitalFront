@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Context } from 'src/index';
 import Header from 'src/components/Header/Header';
 import Main from 'src/components/Main/Main';
 import SimpleSnackbar from 'src/components/Snack/Snack';
 import { checkValidationLogin , checkValidationPassword } from 'src/helper/helperValidate';
-import './style.scss';
 import BodyImg from 'src/img/hospital.svg';
+import './style.scss';
 
 const SignUp = () => {  
   const [newUser, setNewUser] = useState({
@@ -15,12 +15,10 @@ const SignUp = () => {
     confirmPassword: '',
   });
   const [snackText, setSnackText] = useState('');
-  const [openSnack, setOpenSnack] = useState(false);  
-  const navigate = useNavigate();
-  const {store} = useContext(Context); 
+  const [openSnack, setOpenSnack] = useState(false);
+  const { store } = useContext(Context); 
 
-  const createNewPatient = async (e) => {       
-    e.preventDefault();         
+  const createNewPatient = async () => {
     const {
       name,
       password,
@@ -43,9 +41,7 @@ const SignUp = () => {
         
     if (res) {
       showResultValidation(res);        
-    } else {             
-      navigate('/signIn');  
-    }          
+    }         
   }
 
   const showResultValidation = (message) => {
@@ -68,7 +64,7 @@ const SignUp = () => {
         <img src={BodyImg} alt='hospitalLogo'/>
         <div className='signup-body'>
           <h1>Регистрация</h1>
-          <form className='signup-form' onSubmit={createNewPatient}>          
+          <form className='signup-form'>          
             <div className='signup-block'>
               <label htmlFor='signup-block__input-login'>Логин:</label>
               <input 
@@ -100,7 +96,7 @@ const SignUp = () => {
               />              
             </div>
             <div className='signup-block'>
-              <button className='signup-block__button-registrate'>Зарегистрироваться</button>
+              <button type='button' className='signup-block__button-registrate' onClick={createNewPatient}>Зарегистрироваться</button>
               <Link className='signup-block__link-login' to='/signIn'>
                 Войти
               </Link> 
