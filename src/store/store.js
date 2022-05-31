@@ -10,7 +10,7 @@ export default class Store {
   user = {};
   isAuth = false;  
   isLoading = false;
-  subscribers = []; 
+  events = []; 
 
   setUser(user) {
     this.user = user;
@@ -104,15 +104,15 @@ export default class Store {
   }
 
   subscribe = (callback) => {
-    if (!this.subscribers) {
-      this.subscribers = [];
+    if (!this.events) {
+      this.events = [];
     }    
-    this.subscribers.push(callback);
+    this.events.push(callback);
   }
 
   publish = (data) => {
-    if (!this.subscribers) return;
-    this.subscribers.forEach(subscriberCallback =>
-      subscriberCallback(data));
+    if (!this.events) return;
+    this.events.forEach(eventsCallback =>
+      eventsCallback(data));
   }
 }
