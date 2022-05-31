@@ -10,7 +10,7 @@ export default class Store {
   user = {};
   isAuth = false;  
   isLoading = false;
-  subscribers = {}; 
+  subscribers = []; 
 
   setUser(user) {
     this.user = user;
@@ -18,7 +18,7 @@ export default class Store {
 
   setIsAuth(isAuth) {
     this.isAuth = isAuth;
-    this.publish('auth', this.isAuth);   
+    this.publish(this.isAuth);   
   } 
 
   setLoading(boolean) {
@@ -103,16 +103,16 @@ export default class Store {
     } 
   }
 
-  subscribe = (event, callback) => {
-    if (!this.subscribers[event]) {
-      this.subscribers[event] = [];
+  subscribe = (callback) => {
+    if (!this.subscribers) {
+      this.subscribers = [];
     }    
-    this.subscribers[event].push(callback);
+    this.subscribers.push(callback);
   }
 
-  publish = (event, data) => {
-    if (!this.subscribers[event]) return;
-    this.subscribers[event].forEach(subscriberCallback =>
+  publish = (data) => {
+    if (!this.subscribers) return;
+    this.subscribers.forEach(subscriberCallback =>
       subscriberCallback(data));
   }
 }
