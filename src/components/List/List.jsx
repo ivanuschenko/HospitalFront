@@ -8,8 +8,8 @@ import './style.scss';
 
 const List = ({list, setList}) => {
 
-  const [modalDelActive, setModalDelActive ] = useState(false);
-  const [modalEditActive, setModalEditActive ] = useState(false);
+  const [modalDelActive, setModalDelActive] = useState(false);
+  const [modalEditActive, setModalEditActive] = useState(false);
   const [id, setId] = useState('')
 
   const deleteAppointment = (id) => {
