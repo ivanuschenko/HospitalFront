@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import Moment from 'react-moment';
 import ModaleDelete from 'src/components/modal/ModalDelete/ModalDelete';
 import ModalEdit from 'src/components/modal/ModalEdit/ModalEdit';
-import Moment from 'react-moment';
 import Delete from 'src/img/bin.svg';
 import Edit from 'src/img/edit.svg';
 import './style.scss';
@@ -41,18 +41,18 @@ const List = ({list, setList}) => {
         }
       </tbody>
       {modalDelActive && <ModaleDelete
-        list = {list} 
+        list={list} 
         active={modalDelActive} 
-        setActive= {setModalDelActive} 
-        id = {id} 
-        setList = {setList}
+        setActive={setModalDelActive} 
+        id={id} 
+        setList={setList}
       />}
       {modalEditActive && <ModalEdit 
         modalEditActive={modalEditActive} 
         setEditActive= {setModalEditActive}               
-        id = {id}
-        list = {list}
-        setList = {setList}                                  
+        id={id}
+        list={list}
+        setList={setList}                                  
       />} 
     </table>    
   )

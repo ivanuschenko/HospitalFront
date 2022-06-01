@@ -6,13 +6,14 @@ const ModaleDelete = ({list, active, setActive, id, setList}) => {
   const {store} = useContext(Context);
 
   const deleteAppointment = async (id) => { 
-    await store.deleteApointment(id);   
-    const temp = list.filter(el => el._id !== id);    
+    await store.deleteApointment(id);      
+    const temp = list.filter(({_id}) => _id !== id);    
     setList(temp);
     setActive(false);    
   }
+
   return (
-    <div className={active? 'modal-delete active' : 'modal-delete'} onClick={() => setActive(false)}>
+    <div className={active ? 'modal-delete active' : 'modal-delete'} onClick={() => setActive(false)}>
       <div className='modal-delete-block' onClick={(e) => e.stopPropagation()}>
         <div className='modal-delete-block_title'>
           <h1>Удалить прием</h1>
