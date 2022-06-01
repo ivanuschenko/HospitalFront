@@ -22,8 +22,8 @@ const ModaleDelete = ({list, active, setActive, id, setList}) => {
           <p>Вы действительно хотите удалить прием?</p>
         </div>               
         <div className='modal-delete-block_buttons'>
-          <button className='modal-delete-block_buttons__cancel' type='button' onClick={()=>setActive(false)}>Отмена</button>
-          <button className='modal-delete-block_buttons__delete' type='button' onClick={()=>deleteAppointment(id)}>Удалить</button>
+          <button className='modal-delete-block_buttons__cancel' type='button' onClick={() => setActive(false)}>Отмена</button>
+          <button className='modal-delete-block_buttons__delete' type='button' onClick={() => deleteAppointment(id)}>Удалить</button>
         </div>        
       </div>
     </div>
