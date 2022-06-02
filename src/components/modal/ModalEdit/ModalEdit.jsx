@@ -3,16 +3,8 @@ import { Context } from 'src/index';
 import { listDoctors } from 'src/constants';
 import './style.scss';
 
-const ModalEdit = ({
-  modalEditActive,
-  setEditActive,   
-  id,
-  list,
-  setList
-}) => {
-
-  const appointment = list.find(list=> list._id === id);
-  const { patient, doctor, date, complaint } = appointment;  
+const ModalEdit = ({modalEditIsOpen, setEditIsOpen, changeableLine, setList}) => {
+  const {_id, patient, doctor, date, complaint } = changeableLine;  
   const {store} = useContext(Context);
   const [modalInputValue, setModalInputValue] = useState({
     modalInputName : patient,
@@ -27,15 +19,15 @@ const ModalEdit = ({
   };
   
   const editAppoint = async () => {       
-    const response = await store.updateApointment(id, modalInputName, modalInputDoctor, modalInputData, modalInputComplaint);
+    const response = await store.updateApointment(_id, modalInputName, modalInputDoctor, modalInputData, modalInputComplaint);
     setList(response.data);    
-    setEditActive(false);
+    setEditIsOpen(false);
   };
 
   const disabledButton = !modalInputName && !modalInputDoctor && !modalInputData && !modalInputComplaint;
   
   return (
-    <div className={modalEditActive ? 'modal-edit active' : 'modal-edit'} onClick={() => setEditActive(false)}>
+    <div className={modalEditIsOpen ? 'modal-edit open' : 'modal-edit'} onClick={() => setEditIsOpen(false)}>
       <div className='modal-edit-block' onClick={(e) => e.stopPropagation()}>
         <div className='modal-edit-block_header'>
           <h1>Изменить прием</h1>
@@ -86,7 +78,7 @@ const ModalEdit = ({
           />
         </div>
         <div className='modal-edit-block_buttons'>
-          <button type='button' onClick={()=>setEditActive(false)} className='modal-edit-block_buttons__cancel'>Отмена</button>
+          <button type='button' onClick={() => setEditIsOpen(false)} className='modal-edit-block_buttons__cancel'>Отмена</button>
           <button type='button' disabled={disabledButton} onClick={editAppoint} className='modal-edit-block_buttons__edit'>Сохранить</button>
         </div>        
       </div>
