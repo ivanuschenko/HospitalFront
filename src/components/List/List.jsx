@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Moment from 'react-moment';
 import ModaleDelete from 'src/components/modal/ModalDelete/ModalDelete';
 import ModalEdit from 'src/components/modal/ModalEdit/ModalEdit';
