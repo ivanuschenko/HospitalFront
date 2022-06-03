@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
-import Moment from 'react-moment';
 import { Context } from 'src/index';
+import Moment from 'react-moment';
 import ModaleDelete from 'src/components/modal/ModalDelete/ModalDelete';
 import ModalEdit from 'src/components/modal/ModalEdit/ModalEdit';
 import Delete from 'src/img/bin.svg';
@@ -13,18 +13,18 @@ const List = ({list, setList}) => {
   const [modalDelIsOpen, setModalDelIsOpen] = useState(false);
   const [changeableLine, setChangeableLine] = useState(null);
 
-  const openEditModal = (obj) => {    
-    setChangeableLine(obj);   
+  const openEditModal = (appointment) => {      
+    setChangeableLine(appointment);   
     setModalEditIsOpen(true);
   }
 
-  const openDeliteModal = (obj) => {
-    setChangeableLine(obj);
+  const openDeleteModal = (appointment) => {
+    setChangeableLine(appointment);
     setModalDelIsOpen(true);
   }
 
-  const editAppointment = async (obj, id) => {    
-    const { modalInputName, modalInputDoctor, modalInputData, modalInputComplaint } = obj;    
+  const editAppointment = async (appointment, id) => {    
+    const { modalInputName, modalInputDoctor, modalInputData, modalInputComplaint } = appointment;    
     const response = await store.updateApointment(id, modalInputName, modalInputDoctor, modalInputData, modalInputComplaint);
     setList(response.data);
     setModalEditIsOpen(false);
@@ -51,7 +51,7 @@ const List = ({list, setList}) => {
                 <td className='list-table__line-cell'>{complaint}</td>
                 <td className='list-table__line-cell'>
                   <button type='button' className='list-table_button' onClick={() => openEditModal(list[index])}><img src={Edit} alt="Edit"/></button>
-                  <button type='button' className='list-table_button' onClick={() => openDeliteModal(list[index])}><img src={Delete} alt="Delete"/></button>                                
+                  <button type='button' className='list-table_button' onClick={() => openDeleteModal(list[index])}><img src={Delete} alt="Delete"/></button>                                
                 </td>
               </tr>                   
             )
@@ -60,12 +60,12 @@ const List = ({list, setList}) => {
       </table>
       {modalDelIsOpen && <ModaleDelete
         setModalDelIsOpen={setModalDelIsOpen} 
-        deleteAppointment={deleteAppointment}
-        changeableLine={changeableLine}
+        deleteAppointment={deleteAppointment}        
       />}
       {modalEditIsOpen && <ModalEdit           
         setEditIsOpen={setModalEditIsOpen}
-        editAppointment={editAppointment}                                         
+        editAppointment={editAppointment}
+        changeableLine={changeableLine}                                       
       />} 
     </div>    
   )
