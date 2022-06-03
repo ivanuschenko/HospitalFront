@@ -1,28 +1,19 @@
-import { useState, useContext } from 'react';
-import { Context } from 'src/index';
+import { useState } from 'react';
 import { listDoctors } from 'src/constants';
 import './style.scss';
 
-const ModalEdit = ({setEditIsOpen, changeableLine, setList}) => {
-  const {_id, patient, doctor, date, complaint } = changeableLine;  
-  const {store} = useContext(Context);
+const ModalEdit = ({setEditIsOpen, editAppointment, changeableLine}) => { 
+  const {_id, patient, doctor, date, complaint} = changeableLine;  
   const [modalInputValue, setModalInputValue] = useState({
     modalInputName : patient,
     modalInputDoctor: doctor,
     modalInputData : date,
     modalInputComplaint : complaint
-  });
-  
+  }); 
   const { modalInputName, modalInputDoctor, modalInputData, modalInputComplaint } = modalInputValue;  
   const handleChange = (key, value) => {    
     setModalInputValue({...modalInputValue, [key]:value});
-  };
-  
-  const editAppoint = async () => {       
-    const response = await store.updateApointment(_id, modalInputName, modalInputDoctor, modalInputData, modalInputComplaint);
-    setList(response.data);    
-    setEditIsOpen(false);
-  };
+  }; 
 
   const disabledButton = !modalInputName && !modalInputDoctor && !modalInputData && !modalInputComplaint;
   
@@ -79,7 +70,7 @@ const ModalEdit = ({setEditIsOpen, changeableLine, setList}) => {
         </div>
         <div className='modal-edit-block_buttons'>
           <button type='button' onClick={() => setEditIsOpen(false)} className='modal-edit-block_buttons__cancel'>Отмена</button>
-          <button type='button' disabled={disabledButton} onClick={editAppoint} className='modal-edit-block_buttons__edit'>Сохранить</button>
+          <button type='button' disabled={disabledButton} onClick={() => editAppointment(modalInputValue, _id)} className='modal-edit-block_buttons__edit'>Сохранить</button>
         </div>        
       </div>
     </div>  
