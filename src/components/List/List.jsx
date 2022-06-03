@@ -9,12 +9,11 @@ import './style.scss';
 const List = ({list, setList}) => {
 
   const [modalDelIsOpen, setModalDelIsOpen] = useState(false);
-  const [modalEditIsOpen, setModalEditIsOpen] = useState(false);
-  const [id, setId] = useState('');
-  const [changeableLine, setChangeableLine] = useState({});
+  const [modalEditIsOpen, setModalEditIsOpen] = useState(false);  
+  const [changeableLine, setChangeableLine] = useState(null);
    
-  const deleteAppointment = (id) => {
-    setId(id);
+  const deleteAppointment = (obj) => {
+    setChangeableLine(obj);
     setModalDelIsOpen(true);
   }   
 
@@ -24,37 +23,36 @@ const List = ({list, setList}) => {
   } 
 
   return (
-    <table className='list-table__list'>
-      <tbody>             
-        { 
-          list.map(({_id, patient, doctor, date, complaint}, index) =>                                
-            <tr className='list-table__line' key={`list-${_id}`}>                  
-              <td className='list-table__line-cell'>{patient}</td> 
-              <td className='list-table__line-cell'>{doctor}</td>
-              <td className='list-table__line-cell'><Moment format='DD.MM.YYYY'>{date}</Moment></td>
-              <td className='list-table__line-cell'>{complaint}</td>
-              <td className='list-table__line-cell'>                                
-                <input type='image' src={Edit} onClick={() => editAppointment(list[index])} alt='Edit' />
-                <input type='image' src={Delete} onClick={() => deleteAppointment(_id)} alt='Delete' />                
-              </td>
-            </tr>                   
-          )
-        }
-      </tbody>
+    <div className='abc'>    
+      <table className='list-table__list'>
+        <tbody>             
+          { 
+            list.map(({_id, patient, doctor, date, complaint}, index) =>                                
+              <tr className='list-table__line' key={`list-${_id}`}>                  
+                <td className='list-table__line-cell'>{patient}</td> 
+                <td className='list-table__line-cell'>{doctor}</td>
+                <td className='list-table__line-cell'><Moment format='DD.MM.YYYY'>{date}</Moment></td>
+                <td className='list-table__line-cell'>{complaint}</td>
+                <td className='list-table__line-cell'>
+                  <button type='button' className='list-table_button' onClick={() => editAppointment(list[index])}><img src={Edit} alt="Edit"/></button>
+                  <button type='button' className='list-table_button' onClick={() => deleteAppointment(list[index])}><img src={Delete} alt="Delete"/></button>                                
+                </td>
+              </tr>                   
+            )
+          }
+        </tbody>      
+      </table>
       {modalDelIsOpen && <ModaleDelete
-        list={list} 
-        modalDelIsOpen={modalDelIsOpen} 
-        setModalDelIsOpen={setModalDelIsOpen} 
-        id={id} 
-        setList={setList}
-      />}
-      {modalEditIsOpen && <ModalEdit 
-        modalEditIsOpen={modalEditIsOpen} 
-        setEditIsOpen={setModalEditIsOpen}               
-        changeableLine={changeableLine}        
-        setList={setList}                                  
-      />} 
-    </table>    
+          setModalDelIsOpen={setModalDelIsOpen} 
+          changeableLine={changeableLine} 
+          setList={setList}
+        />}
+        {modalEditIsOpen && <ModalEdit           
+          setEditIsOpen={setModalEditIsOpen}               
+          changeableLine={changeableLine}        
+          setList={setList}                                  
+        />} 
+    </div>    
   )
 }
 

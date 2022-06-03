@@ -4,16 +4,17 @@
   width: 100vw;
   background-color: rgba(0,0,0,0.4);
   position: fixed;
+  overflow: hidden;
   top: 0;
   left: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
+  justify-content: center; 
   transition: 0.5s;
 
-  &-block {  
+  &-block {
+    position: fixed;
+    left: 40rem;  
     padding: 0;
     border-radius: 0.5rem;
     background-color: white;  
@@ -89,7 +90,3 @@
   }
 }
 
-.modal-edit.open {
-  opacity: 1;
-  pointer-events: all;    
-}

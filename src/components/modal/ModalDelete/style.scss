@@ -8,8 +8,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  pointer-events: none;
   transition: 0.5s;
 
   &-block {  
@@ -57,9 +55,4 @@
       }    
     }
   }
-}
-
-.modal-delete.open {
-  opacity: 1;
-  pointer-events: all;  
 }

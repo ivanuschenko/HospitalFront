@@ -3,7 +3,7 @@ import { Context } from 'src/index';
 import { listDoctors } from 'src/constants';
 import './style.scss';
 
-const ModalEdit = ({modalEditIsOpen, setEditIsOpen, changeableLine, setList}) => {
+const ModalEdit = ({setEditIsOpen, changeableLine, setList}) => {
   const {_id, patient, doctor, date, complaint } = changeableLine;  
   const {store} = useContext(Context);
   const [modalInputValue, setModalInputValue] = useState({
@@ -27,8 +27,8 @@ const ModalEdit = ({modalEditIsOpen, setEditIsOpen, changeableLine, setList}) =>
   const disabledButton = !modalInputName && !modalInputDoctor && !modalInputData && !modalInputComplaint;
   
   return (
-    <div className={modalEditIsOpen ? 'modal-edit open' : 'modal-edit'} onClick={() => setEditIsOpen(false)}>
-      <div className='modal-edit-block' onClick={(e) => e.stopPropagation()}>
+    <div className='modal-edit'>
+      <div className='modal-edit-block'>
         <div className='modal-edit-block_header'>
           <h1>Изменить прием</h1>
         </div>        

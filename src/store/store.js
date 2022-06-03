@@ -114,7 +114,8 @@ export default class Store {
 
   deleteApointment = async (id) => {    
     try {      
-      await appointmentService.deleteAppointment(id);      
+      const response = await appointmentService.deleteAppointment(id);     
+      return response;      
     } catch (e) {
       alert('Ошибка deleteApointment ' + e.name + ":" + e.message);;
     }
