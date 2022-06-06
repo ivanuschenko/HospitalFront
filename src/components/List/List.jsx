@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
-import { Context } from 'src/index';
 import Moment from 'react-moment';
+import { Context } from 'src/index';
 import ModaleDelete from 'src/components/modal/ModalDelete/ModalDelete';
 import ModalEdit from 'src/components/modal/ModalEdit/ModalEdit';
 import Delete from 'src/img/bin.svg';
@@ -34,7 +34,7 @@ const List = ({list, setList}) => {
     const {_id} = changeableLine;
     await store.deleteApointment(_id);
     const temp = list.filter((list) => list._id !== _id); 
-    setList(temp)
+    setList(temp);
     setModalDelIsOpen(false);
   }   
 

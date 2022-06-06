@@ -12,7 +12,7 @@ const ModalEdit = ({setEditIsOpen, editAppointment, changeableLine}) => {
   }); 
   const { modalInputName, modalInputDoctor, modalInputData, modalInputComplaint } = modalInputValue;  
   const handleChange = (key, value) => {    
-    setModalInputValue({...modalInputValue, [key]:value});
+    setModalInputValue({...modalInputValue, [key]: value});
   }; 
 
   const disabledButton = !modalInputName && !modalInputDoctor && !modalInputData && !modalInputComplaint;
