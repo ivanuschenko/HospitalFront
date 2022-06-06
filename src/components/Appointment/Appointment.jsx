@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { Context } from 'src/index';
 import Header from 'src/components/Header/Header';
 import ListAdder from 'src/components/ListAdder/ListAdder';
+import Sorting from 'src/components/Sorting/Sorting'
 import List from 'src/components/List/List';
 import Main from 'src/components/Main/Main';
 import { tableList } from 'src/constants';
@@ -43,20 +44,26 @@ const Appointment = () => {
         appointment={appointment} 
         setAppointment={setAppointment}
       /> 
-      <Main>               
-        <div className='appointment-table'>
-          <table className='appointment-table__head'> 
-            <tbody>
-              <tr>
-                {
-                  tableList.map(th =>
-                    <th className='appointment-table__head-cell' key={`appointment-table__head-cell-${th.id}`}>{th.field}</th>                                       
-                  )
-                }               
-              </tr>
-            </tbody> 
-          </table>          
-          <List list={list} setList={setList}/>
+      <Main> 
+        <div className='appointment-body'>
+          <Sorting 
+            list = {list}
+            setList = {setList}
+          />                
+          <div className='appointment-table'>       
+            <table className='appointment-table__head'> 
+              <tbody>
+                <tr>
+                  {
+                    tableList.map(th =>
+                      <th className='appointment-table__head-cell' key={`appointment-table__head-cell-${th.id}`}>{th.field}</th>                                       
+                    )
+                  }               
+                </tr>
+              </tbody> 
+            </table>          
+            <List list={list} setList={setList}/>
+          </div>
         </div>         
       </Main>     
     </div>

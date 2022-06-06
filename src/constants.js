@@ -1,15 +1,15 @@
 export const fields = [
   {
     name: "Имя",
-    val: "patient"
+    value: "patient"
   },
   {
     name: "Доктор",
-    val: "doctor"
+    value: "doctor"
   },
   {
     name: "Дата",
-    val: "date"
+    value: "date"
   },
 ]
 

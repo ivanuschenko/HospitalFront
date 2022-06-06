@@ -1,0 +1,73 @@
+.sorting {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 12vh;
+  width: 100%;
+  justify-content: space-evenly; 
+  
+  &-body {
+    display: flex; 
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &-block {    
+    display: flex;
+    width: 18rem;
+    align-items: center;      
+    
+    &_label__field {
+      width: 11rem;
+    }
+
+    &_select__field {
+      width: 15rem;
+      height: 3rem;
+      font-size: 1.2rem;
+      border-radius: 0.2rem;
+      background-color: white;                
+    }
+
+    &_option__field {
+      font-size: 1.2rem;
+    }
+
+    &__direction {
+      display: none; 
+    }
+
+    &__direction.active {
+      display: flex;
+      align-items: center;
+    }
+
+    &_select__direction {
+      width: 10rem;
+      height: 3rem;
+      font-size: 1.2rem;
+      border-radius: 0.2rem;
+      background-color: white;
+    }
+
+    &_option__direction {
+      font-size: 1.2rem;
+    }     
+
+    &_button__open-filter {
+      background-color: #C5E9FF;
+      border: none;
+    } 
+    
+    &_img__addFilter {
+      align-self: center;
+      width: 2.5rem;  
+    }
+  }     
+}
+
+  
+
+
+
+
