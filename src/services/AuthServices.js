@@ -8,15 +8,15 @@ export default class AuthService {
   This static methods calle from store and send to backend a request.
   api - is configuration of axios with interceptors on request and respone */
 
-  static async registration(name, password) {
+  static registration(name, password) {
     return api.post('/api/registration', {name, password});
   };
 
-  static async signIn(name, password) {
+  static signIn(name, password) {
     return api.post('/api/signIn', {name, password});
   };
 
-  static async signOut() {
+  static signOut() {
     return api.get('/api/signOut');
   };  
-}
+};

@@ -8,9 +8,8 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
   const { store } = useContext(Context);
 
   const handleChange = (key, value) => {    
-    setAppointment({...appointment, [key]:value})
-  };
- 
+    setAppointment({...appointment, [key]: value});
+  }; 
   const disabledButton = !inputName || !inputDoctor || !inputData || !inputComplaint;
   
   const addAppointment = async (e) => {
