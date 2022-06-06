@@ -12,7 +12,7 @@ const ModaleDelete = ({setModalDelIsOpen, deleteAppointment}) => {
         </div>               
         <div className='modal-delete-block_buttons'>
           <button className='modal-delete-block_buttons__cancel' type='button' onClick={() => setModalDelIsOpen(false)}>Отмена</button>
-          <button className='modal-delete-block_buttons__delete' type='button' onClick={() => deleteAppointment()}>Удалить</button>
+          <button className='modal-delete-block_buttons__delete' type='button' onClick={deleteAppointment}>Удалить</button>
         </div>        
       </div>
     </div>
