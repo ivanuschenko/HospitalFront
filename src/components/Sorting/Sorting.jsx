@@ -45,21 +45,20 @@ const Sorting = ({list, setList}) => {
             }
           </select>
         </div>
-        {
-          openSortDirection && 
-            <div className={'sorting-block__direction'} >
-              <label htmlFor='sorting-select__direction'>Направление:</label>
-              <select 
-                className='sorting-block_select__direction' 
-                onChange={(e) => setSortingWay(e.target.value)}>
-                  <option></option>
-                  { 
-                    direction.map(({id, value, way}) =>
-                    <option className='sorting-block_option__direction' key={id} value={value} >{way}</option>
-                    )
-                  }              
-              </select>
-            </div>
+        {openSortDirection && 
+          <div className={'sorting-block__direction'} >
+            <label htmlFor='sorting-select__direction'>Направление:</label>
+            <select 
+              className='sorting-block_select__direction' 
+              onChange={(e) => setSortingWay(e.target.value)}>
+                <option></option>
+                { 
+                  direction.map(({id, value, way}) =>
+                  <option className='sorting-block_option__direction' key={id} value={value} >{way}</option>
+                  )
+                }              
+            </select>
+          </div>
         }
         <div className='sorting-block'>
           <label htmlFor='sorting-block_button__open-filter'>Добавить фильтр по дате:</label>
