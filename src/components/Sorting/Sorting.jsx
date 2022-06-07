@@ -69,7 +69,7 @@ const Sorting = ({list, setList}) => {
             onClick={() => alert('future logic for open filter components')}   //future logic for open filter components 
           >
             <img src={addSort} 
-              alt='btn-add-filter' 
+              alt='btn-open-filter' 
               className='sorting-block_img__open-filter'               
             />
           </button>          
