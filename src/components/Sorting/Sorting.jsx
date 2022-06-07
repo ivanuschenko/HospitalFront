@@ -70,7 +70,7 @@ const Sorting = ({list, setList}) => {
           >
             <img src={addSort} 
               alt='btn-add-filter' 
-              className='sorting-block_img__addFilter'               
+              className='sorting-block_img__open-filter'               
             />
           </button>          
         </div>                
