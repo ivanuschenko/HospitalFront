@@ -47,8 +47,8 @@ const Appointment = () => {
       <Main> 
         <div className='appointment-body'>
           <Sorting 
-            list = {list}
-            setList = {setList}
+            list={list}
+            setList={setList}
           />                
           <div className='appointment-table'>       
             <table className='appointment-table__head'> 

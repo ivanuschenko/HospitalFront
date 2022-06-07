@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import addSort from 'src/img/plus.png';
-import { fields } from 'src/constants';
+import { fields, direction } from 'src/constants';
 import './style.scss';
 
 const Sorting = ({list, setList}) => { 
@@ -44,28 +44,34 @@ const Sorting = ({list, setList}) => {
               ))        
             }
           </select>
-        </div>        
-        <div className={openSortDirection ? 'sorting-block__direction active' : 'sorting-block__direction '} >
-          <label htmlFor='sorting-select__direction'>Направление:</label>
-          <select 
-            className='sorting-block_select__direction' 
-            onChange={(e) => setSortingWay(e.target.value)}>
-              <option></option>
-              <option className='sorting-block_option__direction' value='asc' >По возрастанию</option>
-              <option className='sorting-block_option__direction' value='desc'>По убыванию</option>
-          </select>
         </div>
+        {
+          openSortDirection && 
+            <div className={'sorting-block__direction'} >
+              <label htmlFor='sorting-select__direction'>Направление:</label>
+              <select 
+                className='sorting-block_select__direction' 
+                onChange={(e) => setSortingWay(e.target.value)}>
+                  <option></option>
+                  { 
+                    direction.map(({id, value, way}) =>
+                    <option className='sorting-block_option__direction' key={id} value={value} >{way}</option>
+                    )
+                  }              
+              </select>
+            </div>
+        }
         <div className='sorting-block'>
           <label htmlFor='sorting-block_button__open-filter'>Добавить фильтр по дате:</label>
           <button 
             type='button' 
             id='sorting-block_button__open-filter' 
             className='sorting-block_button__open-filter'
+            onClick={() => alert('future logic for open filter components')}   //future logic for open filter components 
           >
             <img src={addSort} 
               alt='btn-add-filter' 
-              className='sorting-block_img__addFilter' 
-              onClick={() => alert('future logic for open filter components')}  //future logic for open filter components 
+              className='sorting-block_img__addFilter'               
             />
           </button>          
         </div>                

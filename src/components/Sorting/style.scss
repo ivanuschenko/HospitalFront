@@ -34,10 +34,6 @@
     }
 
     &__direction {
-      display: none; 
-    }
-
-    &__direction.active {
       display: flex;
       align-items: center;
     }

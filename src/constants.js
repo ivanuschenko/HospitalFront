@@ -25,3 +25,8 @@ export const tableList =
   {'id': 4, 'field':'Жалобы'},
   {'id': 5, 'field': ''}
 ];
+
+export const direction = [
+  {id: 1, value: 'asc', way: 'По возрастанию'},
+  {id: 2, value: 'desc', way: 'По убыванию'}
+]
