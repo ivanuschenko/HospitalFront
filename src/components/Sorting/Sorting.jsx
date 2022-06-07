@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import addSort from 'src/img/plus.png';
 import { fields, direction } from 'src/constants';
+import addSort from 'src/img/plus.png';
 import './style.scss';
 
 const Sorting = ({list, setList}) => { 
