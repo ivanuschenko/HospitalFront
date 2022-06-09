@@ -8,13 +8,19 @@ const Sorting = ({list, setList}) => {
   const [sortingField, setSortingField] = useState('');
   const [openSortDirection, setOpenSortDirection] = useState(false); 
   const [sortingWay, setSortingWay] = useState('asc');
+  const [openFilter, setOpenFilter] = useState(false);
 
-  const sort = () => {    
-    const sortedList = [...list].sort((a, b) => (    
-      (a[sortingField] > b[sortingField]) ? -1 : ((a[sortingField] < b[sortingField]) ? 1 : 0))  
-    );
-    if (sortingWay === 'desc') sortedList.reverse();         
-    setList(sortedList);    
+  const sort = () => {  
+    const sortedList = [...list].sort((a, b) => {
+      if (sortingWay === 'asc') {
+        if (a[sortingField] === b[sortingField]) return 0;    
+        return a[sortingField] > b[sortingField] ? 1 : -1;  
+      } 
+    });
+    if (sortingWay === 'desc') {
+      sortedList.reverse();
+    }         
+    setList(sortedList); 
   } 
 
   useEffect( () => {         
@@ -50,8 +56,7 @@ const Sorting = ({list, setList}) => {
             <label htmlFor='sorting-select__direction'>Направление:</label>
             <select 
               className='sorting-block_select__direction' 
-              onChange={(e) => setSortingWay(e.target.value)}>
-                <option></option>
+              onChange={(e) => setSortingWay(e.target.value)}>                
                 { 
                   direction.map(({id, value, way}) =>
                   <option className='sorting-block_option__direction' key={id} value={value} >{way}</option>
@@ -66,7 +71,7 @@ const Sorting = ({list, setList}) => {
             type='button' 
             id='sorting-block_button__open-filter' 
             className='sorting-block_button__open-filter'
-            onClick={() => alert('future logic for open filter components')}   //future logic for open filter components 
+            onClick={() => setOpenFilter(true)}   //future logic for open filter components 
           >
             <img src={addSort} 
               alt='btn-open-filter' 
