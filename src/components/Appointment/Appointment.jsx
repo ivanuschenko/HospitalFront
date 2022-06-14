@@ -31,7 +31,7 @@ const Appointment = () => {
 
   const getAllAppointments = async () => {
     const response = await store.getAllAppointments();    
-    setList(response.data)               
+    setList(response.data);               
   };
 
   const sort = () => {    
