@@ -11,21 +11,46 @@ import './style.scss';
 const Appointment = () => {  
   const { store } = useContext(Context);  
   const [list, setList] = useState([]);
+  const [sortingField, setSortingField] = useState('name');
+  const [sortingWay, setSortingWay] = useState('asc');
   const [appointment, setAppointment] = useState({
     inputName : '',
     inputDoctor: '',
     inputData : '',
     inputComplaint : ''
-  });  
+  }); 
 
   useEffect( () => {    
-    getAllAppointments();         
-  }, []);
+    getAllAppointments();
+    sort()                    
+  }, []);  
+  
+  useEffect( () => {            
+    sort()
+  }, [sortingField, sortingWay]);
 
   const getAllAppointments = async () => {
-    const response = await store.getAllAppointments();       
-    setList(response.data);            
+    const response = await store.getAllAppointments();    
+    setList(response.data)               
   };
+
+  const sort = () => {    
+    const sortedList = [...list].sort((a, b) => {
+      if (sortingWay === 'asc') {
+        if (a[sortingField] === b[sortingField]) {
+          return 0;
+        } 
+        return a[sortingField] > b[sortingField] ? 1 : -1;  
+      }
+      if (sortingWay === 'desc') {
+        if (a[sortingField] === b[sortingField]) {
+          return 0;
+        } 
+        return a[sortingField] < b[sortingField] ? 1 : -1;  
+      }      
+    });        
+    return sortedList;    
+  }
 
   return (
     <div className='appointment'>           
@@ -47,8 +72,11 @@ const Appointment = () => {
       <Main> 
         <div className='appointment-body'>
           <Sorting 
-            list={list}
-            setList={setList}
+            sortingField={sortingField}
+            sortingWay={sortingWay}
+            setSortingField={setSortingField}
+            setSortingWay={setSortingWay}
+            sort={sort}
           />                
           <div className='appointment-table'>       
             <table className='appointment-table__head'> 
@@ -62,7 +90,7 @@ const Appointment = () => {
                 </tr>
               </tbody> 
             </table>          
-            <List list={list} setList={setList}/>
+            <List list={sort()} setList={setList}/>
           </div>
         </div>         
       </Main>     

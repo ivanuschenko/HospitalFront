@@ -1,31 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { fields, direction } from 'src/constants';
 import addSort from 'src/img/plus.png';
 import './style.scss';
 
-const Sorting = ({list, setList}) => { 
-    
-  const [sortingField, setSortingField] = useState('');
-  const [openSortDirection, setOpenSortDirection] = useState(false); 
-  const [sortingWay, setSortingWay] = useState('asc');
+const Sorting = ({ setSortingField, setSortingWay}) => {     
+  const [openSortDirection, setOpenSortDirection] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
-
-  const sort = () => {  
-    const sortedList = [...list].sort((a, b) => {
-      if (sortingWay === 'asc') {
-        if (a[sortingField] === b[sortingField]) return 0;    
-        return a[sortingField] > b[sortingField] ? 1 : -1;  
-      } 
-    });
-    if (sortingWay === 'desc') {
-      sortedList.reverse();
-    }         
-    setList(sortedList); 
-  } 
-
-  useEffect( () => {         
-    sort();     
-  }, [sortingField, sortingWay]); 
 
   return (
     <div className='sorting'>    
@@ -36,14 +16,13 @@ const Sorting = ({list, setList}) => {
             className='sorting-block_select__field'
             onClick={() => setOpenSortDirection(true)}
             onChange={(e) => setSortingField(e.target.value)}
-          >
-            <option></option>          
+          >                      
             {
               fields.map((item, index) => (
                 <option 
                   value={item.value} 
                   key={index}
-                  className='sorting-block_option__field'               
+                  className='sorting-block_option__field'                                                 
                 >
                   {item.name}
                 </option>
@@ -52,13 +31,13 @@ const Sorting = ({list, setList}) => {
           </select>
         </div>
         {openSortDirection && 
-          <div className={'sorting-block__direction'} >
+          <div className='sorting-block__direction'>
             <label htmlFor='sorting-select__direction'>Направление:</label>
             <select 
               className='sorting-block_select__direction' 
-              onChange={(e) => setSortingWay(e.target.value)}>                
+              onChange={(e) => setSortingWay(e.target.value)}>                            
                 { 
-                  direction.map(({id, value, way}) =>
+                  direction.map(({ id, value, way }) =>
                   <option className='sorting-block_option__direction' key={id} value={value} >{way}</option>
                   )
                 }              
