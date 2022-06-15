@@ -6,12 +6,13 @@ import Sorting from 'src/components/Sorting/Sorting'
 import List from 'src/components/List/List';
 import Main from 'src/components/Main/Main';
 import { tableList } from 'src/constants';
+import { sort } from 'src/helper/helperSorting';
 import './style.scss';
 
 const Appointment = () => {  
   const { store } = useContext(Context);  
   const [list, setList] = useState([]);
-  const [sortingField, setSortingField] = useState('name');
+  const [sortingField, setSortingField] = useState('patient');
   const [sortingWay, setSortingWay] = useState('asc');
   const [appointment, setAppointment] = useState({
     inputName : '',
@@ -22,35 +23,17 @@ const Appointment = () => {
 
   useEffect( () => {    
     getAllAppointments();
-    sort()                    
+    sort(list, sortingWay, sortingField)                        
   }, []);  
   
   useEffect( () => {            
-    sort()
+    sort(list, sortingWay, sortingField)
   }, [sortingField, sortingWay]);
 
   const getAllAppointments = async () => {
     const response = await store.getAllAppointments();    
     setList(response.data);               
   };
-
-  const sort = () => {    
-    const sortedList = [...list].sort((a, b) => {
-      if (sortingWay === 'asc') {
-        if (a[sortingField] === b[sortingField]) {
-          return 0;
-        } 
-        return a[sortingField] > b[sortingField] ? 1 : -1;  
-      }
-      if (sortingWay === 'desc') {
-        if (a[sortingField] === b[sortingField]) {
-          return 0;
-        } 
-        return a[sortingField] < b[sortingField] ? 1 : -1;  
-      }      
-    });        
-    return sortedList;    
-  }
 
   return (
     <div className='appointment'>           
@@ -72,11 +55,8 @@ const Appointment = () => {
       <Main> 
         <div className='appointment-body'>
           <Sorting 
-            sortingField={sortingField}
-            sortingWay={sortingWay}
-            setSortingField={setSortingField}
+            setSortingField={setSortingField}          
             setSortingWay={setSortingWay}
-            sort={sort}
           />                
           <div className='appointment-table'>       
             <table className='appointment-table__head'> 
@@ -90,7 +70,7 @@ const Appointment = () => {
                 </tr>
               </tbody> 
             </table>          
-            <List list={sort()} setList={setList}/>
+            <List list={sort(list, sortingWay, sortingField)} setList={setList}/>
           </div>
         </div>         
       </Main>     
