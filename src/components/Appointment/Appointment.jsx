@@ -5,15 +5,15 @@ import ListAdder from 'src/components/ListAdder/ListAdder';
 import Sorting from 'src/components/Sorting/Sorting'
 import List from 'src/components/List/List';
 import Main from 'src/components/Main/Main';
-import { tableList } from 'src/constants';
+import { fields, tableList, directions } from 'src/constants';
 import { sort } from 'src/helper/helperSorting';
 import './style.scss';
 
 const Appointment = () => {  
   const { store } = useContext(Context);  
   const [list, setList] = useState([]);
-  const [sortingField, setSortingField] = useState('patient');
-  const [sortingWay, setSortingWay] = useState('asc');
+  const [sortingField, setSortingField] = useState(fields[0].value);
+  const [sortingWay, setSortingWay] = useState(directions[0].value);
   const [appointment, setAppointment] = useState({
     inputName : '',
     inputDoctor: '',
@@ -22,8 +22,7 @@ const Appointment = () => {
   }); 
 
   useEffect( () => {    
-    getAllAppointments();
-    sort(list, sortingWay, sortingField)                        
+    getAllAppointments();                       
   }, []);  
   
   useEffect( () => {            

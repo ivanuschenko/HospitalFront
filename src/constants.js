@@ -26,7 +26,7 @@ export const tableList =
   {'id': 5, 'field': ''}
 ];
 
-export const direction = [
-  {id: 1, value: 'asc', way: 'По возрастанию'},
-  {id: 2, value: 'desc', way: 'По убыванию'}
+export const directions = [
+  {value: 'asc', way: 'По возрастанию'},
+  {value: 'desc', way: 'По убыванию'}
 ]

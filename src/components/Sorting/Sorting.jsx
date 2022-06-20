@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fields, direction } from 'src/constants';
+import { fields, directions } from 'src/constants';
 import addSort from 'src/img/plus.png';
 import './style.scss';
 
@@ -37,8 +37,8 @@ const Sorting = ({ setSortingField, setSortingWay}) => {
               className='sorting-block_select__direction' 
               onChange={(e) => setSortingWay(e.target.value)}>                            
                 { 
-                  direction.map(({ id, value, way }) =>
-                  <option className='sorting-block_option__direction' key={id} value={value} >{way}</option>
+                  directions.map(({ value, way }) =>
+                    <option className='sorting-block_option__direction' key={`direction-${value}`} value={value} >{way}</option>
                   )
                 }              
             </select>

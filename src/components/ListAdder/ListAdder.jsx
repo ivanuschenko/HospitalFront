@@ -27,7 +27,7 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
   };
 
   return (
-    <form className="listadder">
+    <form className='listadder'>
       <div className='listadder-block'>
         <label htmlFor='listadder-input__name' className='listadder-block_label'>Имя:</label>
         <input 
@@ -76,8 +76,8 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
       </div>
       <div className='listadder-block'>
         <input 
-          type="submit" 
-          value="Добавить" 
+          type='submit' 
+          value='Добавить' 
           className='listadder-block_button' 
           disabled={disabledButton} 
           onClick={addAppointment} 
