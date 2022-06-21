@@ -23,11 +23,7 @@ const Appointment = () => {
 
   useEffect( () => {    
     getAllAppointments();                       
-  }, []);  
-  
-  useEffect( () => {            
-    sort(list, sortingWay, sortingField)
-  }, [sortingField, sortingWay]);
+  }, []); 
 
   const getAllAppointments = async () => {
     const response = await store.getAllAppointments();    
