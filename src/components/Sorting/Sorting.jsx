@@ -3,10 +3,9 @@ import { fields, directions } from 'src/constants';
 import addSort from 'src/img/plus.png';
 import './style.scss';
 
-const Sorting = ({ setSortingField, setSortingWay}) => {     
+const Sorting = ({ setSortingField, setSortingWay, setOpenFilter }) => {     
   const [openSortDirection, setOpenSortDirection] = useState(false);
-  const [openFilter, setOpenFilter] = useState(false);
-
+  
   return (
     <div className="sorting">    
       <div className="sorting-body">
@@ -50,7 +49,7 @@ const Sorting = ({ setSortingField, setSortingWay}) => {
             type="button" 
             id="sorting-block_button__open-filter" 
             className="sorting-block_button__open-filter"
-            onClick={() => setOpenFilter(true)}   //future logic for open filter components 
+            onClick={() => setOpenFilter(true)} 
           >
             <img src={addSort} 
               alt="btn-open-filter" 
@@ -58,7 +57,7 @@ const Sorting = ({ setSortingField, setSortingWay}) => {
             />
           </button>          
         </div>                
-      </div>     
+      </div>      
     </div>
   )
 }

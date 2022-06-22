@@ -2,7 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { Context } from 'src/index';
 import Header from 'src/components/Header/Header';
 import ListAdder from 'src/components/ListAdder/ListAdder';
-import Sorting from 'src/components/Sorting/Sorting'
+import Sorting from 'src/components/Sorting/Sorting';
+import Filter from 'src/components/Filter/Filter';
 import List from 'src/components/List/List';
 import Main from 'src/components/Main/Main';
 import { fields, tableList, directions } from 'src/constants';
@@ -14,6 +15,7 @@ const Appointment = () => {
   const [list, setList] = useState([]);
   const [sortingField, setSortingField] = useState(fields[0].value);
   const [sortingWay, setSortingWay] = useState(directions[0].value);
+  const [openFilter, setOpenFilter] = useState(false);
   const [appointment, setAppointment] = useState({
     inputName : '',
     inputDoctor: '',
@@ -49,10 +51,16 @@ const Appointment = () => {
       /> 
       <Main> 
         <div className="appointment-body">
-          <Sorting 
+          <Sorting           
             setSortingField={setSortingField}          
             setSortingWay={setSortingWay}
-          />                
+            setOpenFilter={setOpenFilter}
+          />
+          {openFilter && <Filter
+            list={sort(list, sortingWay, sortingField)}
+            setList={setList} 
+            setOpenFilter={setOpenFilter}
+          />}                   
           <div className="appointment-table">       
             <table className="appointment-table__head"> 
               <tbody>
