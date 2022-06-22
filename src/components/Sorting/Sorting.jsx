@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { fields, directions } from 'src/constants';
-import addSort from 'src/img/plus.png';
 import './style.scss';
 
 const Sorting = ({ setSortingField, setSortingWay, setOpenFilter }) => {     
@@ -42,21 +41,7 @@ const Sorting = ({ setSortingField, setSortingWay, setOpenFilter }) => {
                 }              
             </select>
           </div>
-        }
-        <div className="sorting-block">
-          <label htmlFor="sorting-block_button__open-filter">Добавить фильтр по дате:</label>
-          <button 
-            type="button" 
-            id="sorting-block_button__open-filter" 
-            className="sorting-block_button__open-filter"
-            onClick={() => setOpenFilter(true)} 
-          >
-            <img src={addSort} 
-              alt="btn-open-filter" 
-              className="sorting-block_img__open-filter"               
-            />
-          </button>          
-        </div>                
+        }                    
       </div>      
     </div>
   )

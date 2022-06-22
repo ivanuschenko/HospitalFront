@@ -1,5 +1,4 @@
-.sorting {
-  margin-top: 1rem;
+.sorting {  
   display: flex;
   flex-direction: column;
   height: 12vh;
@@ -48,16 +47,6 @@
 
     &_option__direction {
       font-size: 1.2rem;
-    }     
-
-    &_button__open-filter {
-      background-color: #C5E9FF;
-      border: none;
-    } 
-    
-    &_img__open-filter {
-      align-self: center;
-      width: 2.5rem;  
     }
   }     
 }

@@ -5,42 +5,31 @@ import { dateTimeFormat } from 'src/constants';
 import hideImg from 'src/img/bin.svg';
 import './style.scss';
 
-const Filter = ({ list, setList, setOpenFilter }) => {  
+const Filter = ({ list, setList, hideFilter }) => {  
   const [initialData, setInitialData] = useState('');
-  const [finalData, setFinalData] = useState('');
-  const { store } = useContext(Context);  
- 
-  const startFilter = () => {        
+  const [finalData, setFinalData] = useState('');  
+  const [backup, setBackup] = useState(list);
+  const startFilter =  () => {        
     let filtredList = [];
-    if (initialData && finalData) {
-      filtredList = list.filter(item =>
-        moment(item.date, dateTimeFormat).isBetween(initialData, finalData, 'date', '[]')   
-      );
-      setList(filtredList)
-      return;
-    } 
-    if (initialData) {
-      filtredList = list.filter(item =>
+    if (initialData && !finalData) {      
+      filtredList = backup.filter(item =>
         moment(item.date, dateTimeFormat).isAfter(initialData)
       );
-      setList(filtredList);
-      return;
-    } 
-    if (finalData) {
-      filtredList = list.filter(item =>
-        moment(item.date, dateTimeFormat).isBefore(finalData)
-      );
-      setList(filtredList);
-      return;
     }
-    return filtredList;
+
+    if (initialData && finalData) {
+      filtredList = backup.filter(item =>
+        moment(item.date, dateTimeFormat).isBetween(initialData, finalData, 'date', '[]')   
+      );
+    }
+
+    if (!initialData && finalData) {
+      filtredList = backup.filter(item =>
+        moment(item.date, dateTimeFormat).isBefore(finalData)
+      );      
+    }
+    setList(filtredList);    
   }
-  
-  const hideFilter = async () => {
-    setOpenFilter(false);
-    const response = await store.getAllAppointments();
-    setList(response.data); 
-  };
 
   return (
     <div className="filter">
@@ -69,12 +58,14 @@ const Filter = ({ list, setList, setOpenFilter }) => {
           >
             Фильтровать        
           </button>
-          <button className='filter-block-buttons_button__hideFilter'>
+          <button 
+            className='filter-block-buttons_button__hideFilter'
+            onClick={hideFilter} 
+          >
           <img
             className="filter-block-buttons_img" 
             src={hideImg} 
-            alt="hide"
-            onClick={hideFilter} 
+            alt="hide"            
           /> 
           </button> 
         </div>                        

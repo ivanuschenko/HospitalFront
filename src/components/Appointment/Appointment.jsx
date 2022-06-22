@@ -7,6 +7,7 @@ import Filter from 'src/components/Filter/Filter';
 import List from 'src/components/List/List';
 import Main from 'src/components/Main/Main';
 import { fields, tableList, directions } from 'src/constants';
+import addSort from 'src/img/plus.png';
 import { sort } from 'src/helper/helperSorting';
 import './style.scss';
 
@@ -25,11 +26,17 @@ const Appointment = () => {
 
   useEffect( () => {    
     getAllAppointments();                       
-  }, []); 
+  }, [sortingField, sortingWay]); 
 
   const getAllAppointments = async () => {
-    const response = await store.getAllAppointments();    
-    setList(response.data);               
+    const response = await store.getAllAppointments();        
+    setList(sort(response.data, sortingWay, sortingField));               
+  };
+
+  const hideFilter = async () => {    
+    const response = await store.getAllAppointments();
+    setList(response.data);
+    setOpenFilter(false);    
   };
 
   return (
@@ -51,16 +58,32 @@ const Appointment = () => {
       /> 
       <Main> 
         <div className="appointment-body">
-          <Sorting           
-            setSortingField={setSortingField}          
-            setSortingWay={setSortingWay}
-            setOpenFilter={setOpenFilter}
-          />
+          <div className='appointment-body-sort'>
+            <Sorting           
+              setSortingField={setSortingField}          
+              setSortingWay={setSortingWay}
+              setOpenFilter={setOpenFilter}
+            />
+            <div className="appointment-body-button">
+              <label htmlFor="appointment-body-button_button__open-filter">Добавить фильтр по дате:</label>
+              <button 
+                type="button" 
+                id="appointment-body-button_button__open-filter" 
+                className="appointment-body-button_button__open-filter"
+                onClick={() => setOpenFilter(true)} 
+              >
+                <img src={addSort} 
+                  alt="btn-open-filter" 
+                  className="appointment-body-button_img__open-filter"               
+                />
+              </button>          
+            </div>
+          </div>        
           {openFilter && <Filter
-            list={sort(list, sortingWay, sortingField)}
+            list={list}
             setList={setList} 
-            setOpenFilter={setOpenFilter}
-          />}                   
+            hideFilter={hideFilter}
+          />}                          
           <div className="appointment-table">       
             <table className="appointment-table__head"> 
               <tbody>
@@ -73,7 +96,7 @@ const Appointment = () => {
                 </tr>
               </tbody> 
             </table>          
-            <List list={sort(list, sortingWay, sortingField)} setList={setList}/>
+            <List list={list} setList={setList}/>
           </div>
         </div>         
       </Main>     
