@@ -31,11 +31,11 @@ const Appointment = () => {
   };
 
   return (
-    <div className='appointment'>           
+    <div className="appointment">           
       <Header>
         <h1>Прием</h1>
         <button 
-          className='appointment-header__button'
+          className="appointment-header__button"
           onClick={store.signOut}
         >
           Выход
@@ -48,18 +48,18 @@ const Appointment = () => {
         setAppointment={setAppointment}
       /> 
       <Main> 
-        <div className='appointment-body'>
+        <div className="appointment-body">
           <Sorting 
             setSortingField={setSortingField}          
             setSortingWay={setSortingWay}
           />                
-          <div className='appointment-table'>       
-            <table className='appointment-table__head'> 
+          <div className="appointment-table">       
+            <table className="appointment-table__head"> 
               <tbody>
                 <tr>
                   {
                     tableList.map(th =>
-                      <th className='appointment-table__head-cell' key={`appointment-table__head-cell-${th.id}`}>{th.field}</th>                                       
+                      <th className="appointment-table__head-cell" key={`appointment-table__head-cell-${th.id}`}>{th.field}</th>                                       
                     )
                   }               
                 </tr>

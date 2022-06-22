@@ -39,19 +39,19 @@ const List = ({list, setList}) => {
   }   
 
   return (
-    <div className='list'>    
-      <table className='list-table__list'>
+    <div className="list">    
+      <table className="list-table__list">
         <tbody>             
           { 
             list.map(({_id, patient, doctor, date, complaint}, index) =>                                
-              <tr className='list-table__line' key={`list-${_id}`}>                  
-                <td className='list-table__line-cell'>{patient}</td> 
-                <td className='list-table__line-cell'>{doctor}</td>
-                <td className='list-table__line-cell'><Moment format='DD.MM.YYYY'>{date}</Moment></td>
-                <td className='list-table__line-cell'>{complaint}</td>
-                <td className='list-table__line-cell'>
-                  <button type='button' className='list-table_button' onClick={() => openEditModal(list[index])}><img src={Edit} alt="Edit"/></button>
-                  <button type='button' className='list-table_button' onClick={() => openDeleteModal(list[index])}><img src={Delete} alt="Delete"/></button>                                
+              <tr className="list-table__line" key={`list-${_id}`}>                  
+                <td className="list-table__line-cell">{patient}</td> 
+                <td className="list-table__line-cell">{doctor}</td>
+                <td className="list-table__line-cell"><Moment format="DD.MM.YYYY">{date}</Moment></td>
+                <td className="list-table__line-cell">{complaint}</td>
+                <td className="list-table__line-cell">
+                  <button type="button" className="list-table_button" onClick={() => openEditModal(list[index])}><img src={Edit} alt="Edit"/></button>
+                  <button type="button" className="list-table_button" onClick={() => openDeleteModal(list[index])}><img src={Delete} alt="Delete"/></button>                                
                 </td>
               </tr>                   
             )

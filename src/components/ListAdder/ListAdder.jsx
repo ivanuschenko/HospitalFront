@@ -27,22 +27,22 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
   };
 
   return (
-    <form className='listadder'>
-      <div className='listadder-block'>
-        <label htmlFor='listadder-input__name' className='listadder-block_label'>Имя:</label>
+    <form className="listadder">
+      <div className="listadder-block">
+        <label htmlFor="listadder-input__name" className="listadder-block_label">Имя:</label>
         <input 
-          type='text' 
-          className='listadder-block_input'
-          id='listadder-input__name'
+          type="text" 
+          className="listadder-block_input"
+          id="listadder-input__name"
           value={inputName}
           onChange={(e) => handleChange('inputName', e.target.value)}
         />        
       </div>
-      <div className='listadder-block'>
-        <label htmlFor='listadder-input__doctor' className='listadder-block_label'>Врач:</label>
+      <div className="listadder-block">
+        <label htmlFor="listadder-input__doctor" className="listadder-block_label">Врач:</label>
         <select 
-          className='listadder-block_input'
-          id='listadder-input__doctor'
+          className="listadder-block_input"
+          id="listadder-input__doctor"
           onChange={(e) => handleChange('inputDoctor', e.target.value)}
           value={inputDoctor}
         >
@@ -64,21 +64,21 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
           onChange={(e) => handleChange('inputData',e.target.value)}
         /> 
       </div>
-      <div className='listadder-block'>
-        <label htmlFor='listadder-input__complaint' className='listadder-block_label'>Жалобы:</label>
+      <div className="listadder-block">
+        <label htmlFor="listadder-input__complaint" className="listadder-block_label">Жалобы:</label>
         <input 
-          type='text' 
-          className='listadder-block_input'
-          id='listadder-input__complaint'
+          type="text" 
+          className="listadder-block_input"
+          id="listadder-input__complaint"
           value={inputComplaint}
           onChange={(e) => handleChange('inputComplaint', e.target.value)}           
         />
       </div>
-      <div className='listadder-block'>
+      <div className="listadder-block">
         <input 
-          type='submit' 
-          value='Добавить' 
-          className='listadder-block_button' 
+          type="submit" 
+          value="Добавить" 
+          className="listadder-block_button" 
           disabled={disabledButton} 
           onClick={addAppointment} 
         />
