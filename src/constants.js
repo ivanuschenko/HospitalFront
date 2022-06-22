@@ -1,15 +1,15 @@
 export const fields = [
   {
     name: "Имя",
-    val: "patient"
+    value: "patient"
   },
   {
     name: "Доктор",
-    val: "doctor"
+    value: "doctor"
   },
   {
     name: "Дата",
-    val: "date"
+    value: "date"
   },
 ]
 
@@ -25,3 +25,8 @@ export const tableList =
   {'id': 4, 'field':'Жалобы'},
   {'id': 5, 'field': ''}
 ];
+
+export const directions = [
+  {value: 'asc', way: 'По возрастанию'},
+  {value: 'desc', way: 'По убыванию'}
+]

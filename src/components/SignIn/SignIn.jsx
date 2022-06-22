@@ -34,38 +34,38 @@ const SignIn = () => {
   };
 
   return (
-    <div className='signin'>
+    <div className="signin">
       <Header>
-      <div className='signin-header__title'>
+      <div className="signin-header__title">
         <h1>Войти в систему</h1>
       </div>
       </Header>
       <Main>
-        <img src={BodyImg} alt='hospitalLogo' />
-        <div className='signin-body'>
+        <img src={BodyImg} alt="hospitalLogo" />
+        <div className="signin-body">
           <h1>Войти в систему</h1>
-          <form className='signin-form' >          
-            <div className='signin-block'>
-              <label htmlFor='signin-block__input-name'>Логин:</label>
+          <form className="signin-form" >          
+            <div className="signin-block">
+              <label htmlFor="signin-block__input-name">Логин:</label>
               <input              
-                type='text'
-                placeholder='Введите логин'                
-                className='signin-block__input-name'
+                type="text"
+                placeholder="Введите логин"                
+                className="signin-block__input-name"
                 onChange={(e) => handleChange('name', e.target.value)} 
               />       
             </div>
-            <div className='signin-block'>
-              <label htmlFor='signin-block__input-password'>Пароль:</label>
+            <div className="signin-block">
+              <label htmlFor="signin-block__input-password">Пароль:</label>
               <input
-                type='password'                         
-                placeholder='введите пароль'                
-                className='signin-block__input-password'
+                type="password"                         
+                placeholder="введите пароль"                
+                className="signin-block__input-password"
                 onChange={(e) => handleChange('password', e.target.value)}              
               />         
             </div>
-            <div className='signin-block'>
-              <button type='button' className='signin-block__button-login' onClick={authorised}>Войти</button>
-              <Link className='signin-block__link-registrate' to='/signUp'>
+            <div className="signin-block">
+              <button type="button" className="signin-block__button-login" onClick={authorised}>Войти</button>
+              <Link className="signin-block__link-registrate" to="/signUp">
                 Зарегистрироваться
               </Link>
             </div>

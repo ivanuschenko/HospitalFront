@@ -20,16 +20,16 @@ const App = () => {
   if (!auth) {       
     return (
       <Routes>        
-        <Route path='/signUp' element={<SignUp/>} />
-        <Route path='/signIn' element={<SignIn/>} />            
-        <Route path='*' element={<Navigate to='/signIn' />} />               
+        <Route path="/signUp" element={<SignUp/>} />
+        <Route path="/signIn" element={<SignIn/>} />            
+        <Route path="*" element={<Navigate to="/signIn" />} />               
       </Routes>      
     );
   } 
   return (      
     <Routes>
-      <Route path='/appointment' element={<Appointment/>} />
-      <Route path='*' element={<Navigate to='/appointment' />} />
+      <Route path="/appointment" element={<Appointment/>} />
+      <Route path="*" element={<Navigate to="/appointment" />} />
     </Routes>      
   );  
 }

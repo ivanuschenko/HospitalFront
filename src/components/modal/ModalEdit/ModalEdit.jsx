@@ -18,26 +18,26 @@ const ModalEdit = ({setEditIsOpen, editAppointment, changeableLine}) => {
   const disabledButton = !modalInputName && !modalInputDoctor && !modalInputData && !modalInputComplaint;
   
   return (
-    <div className='modal-edit'>
-      <div className='modal-edit-block'>
-        <div className='modal-edit-block_header'>
+    <div className="modal-edit">
+      <div className="modal-edit-block">
+        <div className="modal-edit-block_header">
           <h1>Изменить прием</h1>
         </div>        
-        <div className='modal-edit-block_input'>
-          <label htmlFor='modal-edit_input__name'>Имя:</label>
+        <div className="modal-edit-block_input">
+          <label htmlFor="modal-edit_input__name">Имя:</label>
           <input 
-            className='modal-edit-block_input__text'
-            id='modal-edit_input__name' 
-            type='text'
+            className="modal-edit-block_input__text"
+            id="modal-edit_input__name" 
+            type="text"
             value={modalInputName} 
             onChange={(e) => handleChange('modalInputName', e.target.value)}
           />            
         </div>
-        <div className='modal-edit-block_input'>
-          <label htmlFor='modal-edit_select__doctor'>Врач:</label>
+        <div className="modal-edit-block_input">
+          <label htmlFor="modal-edit_select__doctor">Врач:</label>
           <select 
-            className='modal-edit-block_input__text'
-            id='modal-edit_select__doctor'
+            className="modal-edit-block_input__text"
+            id="modal-edit_select__doctor"
             onChange={(e) => handleChange('modalInputDoctor', e.target.value)}
             value={modalInputDoctor} 
           >          
@@ -48,29 +48,29 @@ const ModalEdit = ({setEditIsOpen, editAppointment, changeableLine}) => {
             }
           </select>
         </div>
-        <div className='modal-edit-block_input'>
-          <label htmlFor='modal-edit_input__date'>Дата:</label>
+        <div className="modal-edit-block_input">
+          <label htmlFor="modal-edit_input__date">Дата:</label>
           <input 
-            className='modal-edit-block_input__text'
-            id='modal-edit_input__date'  
-            type='date'
+            className="modal-edit-block_input__text"
+            id="modal-edit_input__date"  
+            type="date"
             value={modalInputData} 
             onChange={(e) => handleChange('modalInputData', e.target.value)}
           />
         </div>
-        <div className='modal-edit-block_input'>
-          <label htmlFor='modal-edit_input__complaint'>Жалобы</label>
+        <div className="modal-edit-block_input">
+          <label htmlFor="modal-edit_input__complaint">Жалобы</label>
           <textarea 
-            className='modal-edit-block_input__textarea'
-            id='modal-edit_input__complaint'
-            type='text'
+            className="modal-edit-block_input__textarea"
+            id="modal-edit_input__complaint"
+            type="text"
             value={modalInputComplaint} 
             onChange={(e) => handleChange('modalInputComplaint', e.target.value)}
           />
         </div>
-        <div className='modal-edit-block_buttons'>
-          <button type='button' onClick={() => setEditIsOpen(false)} className='modal-edit-block_buttons__cancel'>Отмена</button>
-          <button type='button' disabled={disabledButton} onClick={() => editAppointment(modalInputValue, _id)} className='modal-edit-block_buttons__edit'>Сохранить</button>
+        <div className="modal-edit-block_buttons">
+          <button type="button" onClick={() => setEditIsOpen(false)} className="modal-edit-block_buttons__cancel">Отмена</button>
+          <button type="button" disabled={disabledButton} onClick={() => editAppointment(modalInputValue, _id)} className="modal-edit-block_buttons__edit">Сохранить</button>
         </div>        
       </div>
     </div>  
