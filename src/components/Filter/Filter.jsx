@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import moment from 'moment';
-import { Context } from 'src/index';
+import { Context } from 'src';
 import { dateTimeFormat } from 'src/constants';
 import hideImg from 'src/img/bin.svg';
 import './style.scss';
@@ -13,22 +13,25 @@ const Filter = ({ list, setList, setOpenFilter }) => {
   const startFilter = () => {        
     let filtredList = [];
     if (initialData && finalData) {
-      filtredList = list.filter( item =>
+      filtredList = list.filter(item =>
         moment(item.date, dateTimeFormat).isBetween(initialData, finalData, 'date', '[]')   
       );
       setList(filtredList)
+      return;
     } 
     if (initialData) {
-      filtredList = list.filter( item =>
+      filtredList = list.filter(item =>
         moment(item.date, dateTimeFormat).isAfter(initialData)
       );
       setList(filtredList);
+      return;
     } 
     if (finalData) {
-      filtredList = list.filter( item =>
+      filtredList = list.filter(item =>
         moment(item.date, dateTimeFormat).isBefore(finalData)
       );
       setList(filtredList);
+      return;
     }
     return filtredList;
   }

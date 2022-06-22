@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Context } from 'src/index';
+import { Context } from 'src';
 import { listDoctors } from 'src/constants';
 import './style.scss';
 

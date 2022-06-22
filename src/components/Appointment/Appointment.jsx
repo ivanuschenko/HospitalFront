@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { Context } from 'src/index';
+import { Context } from 'src';
 import Header from 'src/components/Header/Header';
 import ListAdder from 'src/components/ListAdder/ListAdder';
 import Sorting from 'src/components/Sorting/Sorting';
