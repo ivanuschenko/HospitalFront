@@ -7,8 +7,8 @@ import Filter from 'src/components/Filter/Filter';
 import List from 'src/components/List/List';
 import Main from 'src/components/Main/Main';
 import { fields, tableList, directions } from 'src/constants';
-import addSort from 'src/img/plus.png';
 import { sort } from 'src/helper/helperSorting';
+import addSort from 'src/img/plus.png';
 import './style.scss';
 
 const Appointment = () => {  
@@ -33,10 +33,11 @@ const Appointment = () => {
     setList(sort(response.data, sortingWay, sortingField));               
   };
 
-  const hideFilter = async () => {    
+  const hideFilter = async (setBackup) => {    
     const response = await store.getAllAppointments();
     setList(response.data);
-    setOpenFilter(false);    
+    setOpenFilter(false);
+    setBackup('');    
   };
 
   return (
@@ -58,7 +59,7 @@ const Appointment = () => {
       /> 
       <Main> 
         <div className="appointment-body">
-          <div className='appointment-body-sort'>
+          <div className="appointment-body-sort">
             <Sorting           
               setSortingField={setSortingField}          
               setSortingWay={setSortingWay}

@@ -58,9 +58,10 @@ const Filter = ({ list, setList, hideFilter }) => {
           >
             Фильтровать        
           </button>
-          <button 
-            className='filter-block-buttons_button__hideFilter'
-            onClick={hideFilter} 
+          <button
+            type="button" 
+            className="filter-block-buttons_button__hideFilter"
+            onClick={() => hideFilter(setBackup)} 
           >
           <img
             className="filter-block-buttons_img" 

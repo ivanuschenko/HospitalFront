@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { fields, directions } from 'src/constants';
 import './style.scss';
 
-const Sorting = ({ setSortingField, setSortingWay, setOpenFilter }) => {     
+const Sorting = ({ setSortingField, setSortingWay }) => {     
   const [openSortDirection, setOpenSortDirection] = useState(false);
   
   return (

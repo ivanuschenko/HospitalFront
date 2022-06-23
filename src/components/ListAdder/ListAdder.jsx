@@ -54,12 +54,12 @@ const ListAdder = ({list, setList, appointment, setAppointment}) => {
           }
         </select>       
       </div>
-      <div className='listadder-block'>
-        <label htmlFor='listadder-input__data' className='listadder-block_label'>Дата:</label>
+      <div className="listadder-block">
+        <label htmlFor="listadder-input__data" className="listadder-block_label">Дата:</label>
         <input 
-          type='date' 
-          className='listadder-block_input'
-          id='listadder-input__data'
+          type="date" 
+          className="listadder-block_input"
+          id="listadder-input__data"
           value={inputData}          
           onChange={(e) => handleChange('inputData',e.target.value)}
         /> 
