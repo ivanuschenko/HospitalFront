@@ -7,6 +7,26 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+
+    &-sort {
+      width: 90%;
+      display: flex;  
+      justify-self: flex-end;
+    }
+    &-button {
+      display: flex;
+      align-items: center;
+
+      &_button__open-filter {
+        background-color: #C5E9FF;
+        border: none;
+      }
+
+      &_img__open-filter {
+        align-self: center;
+        width: 2.5rem;  
+      }
+    }    
   }
 
     &-header__button {
@@ -50,4 +70,3 @@
       }
     } 
   }
-

@@ -29,4 +29,6 @@ export const tableList =
 export const directions = [
   {value: 'asc', way: 'По возрастанию'},
   {value: 'desc', way: 'По убыванию'}
-]
+];
+
+export const dateTimeFormat = 'YYYY-MM-DD';
