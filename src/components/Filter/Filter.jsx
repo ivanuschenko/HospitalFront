@@ -1,6 +1,5 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import moment from 'moment';
-import { Context } from 'src';
 import { dateTimeFormat } from 'src/constants';
 import hideImg from 'src/img/bin.svg';
 import './style.scss';
@@ -8,27 +7,32 @@ import './style.scss';
 const Filter = ({ list, setList, hideFilter }) => {  
   const [initialData, setInitialData] = useState('');
   const [finalData, setFinalData] = useState('');  
-  const [backup, setBackup] = useState(list);
+  const [listBackup, setListBackup] = useState(list);
   const startFilter =  () => {        
     let filtredList = [];
     if (initialData && !finalData) {      
-      filtredList = backup.filter(item =>
+      filtredList = listBackup.filter(item =>
         moment(item.date, dateTimeFormat).isAfter(initialData)
       );
     }
 
     if (initialData && finalData) {
-      filtredList = backup.filter(item =>
+      filtredList = listBackup.filter(item =>
         moment(item.date, dateTimeFormat).isBetween(initialData, finalData, 'date', '[]')   
       );
     }
 
     if (!initialData && finalData) {
-      filtredList = backup.filter(item =>
+      filtredList = listBackup.filter(item =>
         moment(item.date, dateTimeFormat).isBefore(finalData)
       );      
     }
     setList(filtredList);    
+  }
+
+  const closeFilterAndClearBackup = () => {
+    hideFilter();
+    setListBackup('');
   }
 
   return (
@@ -61,7 +65,7 @@ const Filter = ({ list, setList, hideFilter }) => {
           <button
             type="button" 
             className="filter-block-buttons_button__hideFilter"
-            onClick={() => hideFilter(setBackup)} 
+            onClick={closeFilterAndClearBackup} 
           >
           <img
             className="filter-block-buttons_img" 

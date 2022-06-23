@@ -33,11 +33,10 @@ const Appointment = () => {
     setList(sort(response.data, sortingWay, sortingField));               
   };
 
-  const hideFilter = async (setBackup) => {    
+  const hideFilter = async () => {    
     const response = await store.getAllAppointments();
     setList(response.data);
-    setOpenFilter(false);
-    setBackup('');    
+    setOpenFilter(false);       
   };
 
   return (
