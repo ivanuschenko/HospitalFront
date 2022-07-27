@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import Moment from 'react-moment';
-import { Context } from 'src/index';
+import { Context } from 'src';
 import ModaleDelete from 'src/components/modal/ModalDelete/ModalDelete';
 import ModalEdit from 'src/components/modal/ModalEdit/ModalEdit';
 import Delete from 'src/img/bin.svg';

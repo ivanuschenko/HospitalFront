@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from 'src/index';
+import { Context } from 'src';
 import Header from 'src/components/Header/Header';
 import Main from 'src/components/Main/Main';
 import SimpleSnackbar from 'src/components/Snack/Snack';
